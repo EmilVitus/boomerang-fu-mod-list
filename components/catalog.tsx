@@ -3,6 +3,8 @@
 import { useMemo, useState, type ReactNode } from "react";
 import { Search, ExternalLink } from "lucide-react";
 
+import { LineageTree } from "@/components/lineage-tree";
+import { statusLabel, statusTone } from "@/components/status-tone";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -19,6 +21,7 @@ import {
   categories,
   mods,
   omitted,
+  relatives,
   statuses,
   type CategoryId,
   type ModEntry,
@@ -26,19 +29,7 @@ import {
 } from "@/data/mods";
 
 type SortId = "rank" | "newest" | "name";
-
-const statusTone: Record<StatusId, string> = {
-  udgivet: "bg-primary text-primary-foreground",
-  beta: "bg-[oklch(0.72_0.12_85)] text-[oklch(0.28_0.04_48)]",
-  prototype: "bg-[oklch(0.55_0.08_200)] text-white",
-  kildekode: "border-border bg-transparent text-foreground",
-  foraeldet: "bg-destructive/15 text-destructive",
-  discord: "bg-secondary text-secondary-foreground",
-};
-
-function statusLabel(id: StatusId) {
-  return statuses.find((status) => status.id === id)?.label ?? id;
-}
+type ViewId = "liste" | "trae";
 
 function categoryLabel(id: CategoryId) {
   return categories.find((category) => category.id === id)?.label ?? id;
@@ -49,6 +40,7 @@ export function Catalog() {
   const [selectedCategories, setSelectedCategories] = useState<CategoryId[]>([]);
   const [selectedStatuses, setSelectedStatuses] = useState<StatusId[]>([]);
   const [sort, setSort] = useState<SortId>("rank");
+  const [view, setView] = useState<ViewId>("trae");
   const [openId, setOpenId] = useState<string | null>(null);
 
   const visible = useMemo(() => {
@@ -123,8 +115,9 @@ export function Catalog() {
           </h1>
           <p className="mt-4 max-w-2xl text-lg leading-relaxed text-foreground/80">
             Ni mods og forks, som kan hentes eller læses uden at være med i en lukket
-            gruppe. Spillet fik version 1.4.0 den 3. november 2026. Ingen af dem er
-            bekræftet på den build.
+            gruppe. Stamtræet viser, hvilken der er bygget oven på hvilken. Spillet
+            fik version 1.4.0 den 3. november 2026. Ingen af dem er bekræftet på den
+            build.
           </p>
         </div>
         <dl className="grid grid-cols-2 gap-3 sm:grid-cols-4">
@@ -171,19 +164,31 @@ export function Catalog() {
               ))}
             </FilterRow>
             <div className="flex flex-wrap items-center justify-between gap-3">
-              <FilterRow label="Sortering">
-                <FilterChip pressed={sort === "rank"} onClick={() => setSort("rank")}>
-                  Mest brugbar
-                </FilterChip>
-                <FilterChip pressed={sort === "newest"} onClick={() => setSort("newest")}>
-                  Nyeste
-                </FilterChip>
-                <FilterChip pressed={sort === "name"} onClick={() => setSort("name")}>
-                  Navn
-                </FilterChip>
-              </FilterRow>
+              <div className="flex flex-col gap-3">
+                <FilterRow label="Visning">
+                  <FilterChip pressed={view === "trae"} onClick={() => setView("trae")}>
+                    Stamtræ
+                  </FilterChip>
+                  <FilterChip pressed={view === "liste"} onClick={() => setView("liste")}>
+                    Liste
+                  </FilterChip>
+                </FilterRow>
+                {view === "liste" ? (
+                  <FilterRow label="Sortering">
+                    <FilterChip pressed={sort === "rank"} onClick={() => setSort("rank")}>
+                      Mest brugbar
+                    </FilterChip>
+                    <FilterChip pressed={sort === "newest"} onClick={() => setSort("newest")}>
+                      Nyeste
+                    </FilterChip>
+                    <FilterChip pressed={sort === "name"} onClick={() => setSort("name")}>
+                      Navn
+                    </FilterChip>
+                  </FilterRow>
+                ) : null}
+              </div>
               <p className="text-sm text-muted-foreground">
-                {visible.length} af {mods.length} vist
+                {visible.length} af {mods.length} {view === "trae" ? "i træet" : "vist"}
               </p>
             </div>
           </div>
@@ -200,6 +205,12 @@ export function Catalog() {
               Nulstil filtre
             </Button>
           </div>
+        ) : view === "trae" ? (
+          <LineageTree
+            matchIds={new Set(visible.map((mod) => mod.id))}
+            filtersActive={filtersActive}
+            onOpen={setOpenId}
+          />
         ) : (
           <ul className="mt-6 grid gap-4 md:grid-cols-2">
             {visible.map((mod) => (
@@ -303,7 +314,7 @@ export function Catalog() {
       </main>
 
       <Dialog open={openMod !== null} onOpenChange={(open) => !open && setOpenId(null)}>
-        {openMod ? <ModDialog mod={openMod} /> : null}
+        {openMod ? <ModDialog mod={openMod} onOpen={setOpenId} /> : null}
       </Dialog>
     </div>
   );
@@ -355,7 +366,9 @@ function FilterChip({
   );
 }
 
-function ModDialog({ mod }: { mod: ModEntry }) {
+function ModDialog({ mod, onOpen }: { mod: ModEntry; onOpen: (id: string) => void }) {
+  const family = relatives(mod.id);
+  const parent = family.parent;
   return (
     <DialogContent
       showCloseButton
@@ -371,6 +384,42 @@ function ModDialog({ mod }: { mod: ModEntry }) {
           {mod.authors}. Version {mod.version}.
         </DialogDescription>
       </DialogHeader>
+      {parent || family.children.length > 0 ? (
+        <Section title="Stamtræ">
+          {parent ? (
+            <p>
+              {family.relation ? `${family.relation}. ` : ""}
+              Bygget oven på{" "}
+              <button
+                type="button"
+                className="font-medium text-primary underline-offset-4 hover:underline"
+                onClick={() => onOpen(parent.id)}
+              >
+                {parent.name}
+              </button>
+              .
+            </p>
+          ) : (
+            <p>Udgangspunktet i sin gren.</p>
+          )}
+          {family.children.length > 0 ? (
+            <ul className="mt-2 list-disc space-y-1 pl-5">
+              {family.children.map((child) => (
+                <li key={child.mod.id}>
+                  {child.relation ? `${child.relation}: ` : ""}
+                  <button
+                    type="button"
+                    className="font-medium text-primary underline-offset-4 hover:underline"
+                    onClick={() => onOpen(child.mod.id)}
+                  >
+                    {child.mod.name}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          ) : null}
+        </Section>
+      ) : null}
       <Section title="Hvad den gør">
         <ul className="list-disc space-y-2 pl-5">
           {mod.features.map((feature) => (

@@ -26,6 +26,38 @@ export type ModLink = {
   href: string;
 };
 
+export type LineageEntry = {
+  id: string;
+  basedOn: string | null;
+  relation: string | null;
+};
+
+export const lineage: LineageEntry[] = [
+  { id: "original", basedOn: null, relation: null },
+  { id: "chaos", basedOn: "original", relation: "BepInEx-udgave" },
+  { id: "slaughter", basedOn: "chaos", relation: "Fork af 0.4.1" },
+  { id: "stack", basedOn: "chaos", relation: "Viderebygning til 0.5.6" },
+  { id: "remix", basedOn: "chaos", relation: "Fork efter december 2025" },
+  { id: "online-1", basedOn: null, relation: null },
+  { id: "online-2", basedOn: "online-1", relation: "Næste prototype" },
+  { id: "eight", basedOn: null, relation: null },
+  { id: "hats", basedOn: null, relation: null },
+];
+
+export function relatives(id: string) {
+  const self = lineage.find((entry) => entry.id === id);
+  const parent = self?.basedOn
+    ? (mods.find((mod) => mod.id === self.basedOn) ?? null)
+    : null;
+  const children = lineage
+    .filter((entry) => entry.basedOn === id)
+    .flatMap((entry) => {
+      const mod = mods.find((item) => item.id === entry.id);
+      return mod ? [{ relation: entry.relation, mod }] : [];
+    });
+  return { relation: self?.relation ?? null, parent, children };
+}
+
 export type ModEntry = {
   id: string;
   name: string;

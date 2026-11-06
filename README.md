@@ -1,6 +1,6 @@
 # Boomerang Fu-mods til Windows
 
-Et katalog over de offentlige mods til pc-udgaven af *Boomerang Fu* (Steam, Windows). Listen kan filtreres på type og status, og hvert kort har version, installation, kompatibilitet og links.
+Et katalog over de offentlige mods til pc-udgaven af *Boomerang Fu* (Steam, Windows). Listen kan filtreres på type og status, og hvert kort har version, installation, kompatibilitet og links. Stamtræet viser, hvilken mod der er bygget oven på hvilken: Chaos-familien, de to online-prototyper, og de to mods med egen kodebase.
 
 Kataloget er uafhængigt af Cranky Watermelon og indeholder ingen filer fra spillet.
 
