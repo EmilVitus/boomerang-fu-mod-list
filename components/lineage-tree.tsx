@@ -157,8 +157,16 @@ function TreeList({
                   {node.mod.name}
                 </span>
                 <span className="mt-0.5 block text-sm text-muted-foreground">
-                  {node.mod.authors} · {node.mod.releasedLabel}
+                  {node.mod.authors}
                 </span>
+                <span className="mt-0.5 block text-sm text-muted-foreground">
+                  Sidst opdateret {node.mod.updatedLabel}
+                </span>
+                {node.mod.updateNote ? (
+                  <span className="mt-1 block text-xs leading-relaxed text-foreground/70">
+                    {node.mod.updateNote}
+                  </span>
+                ) : null}
               </button>
               {node.children.length > 0 ? (
                 <TreeList

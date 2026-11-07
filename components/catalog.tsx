@@ -17,6 +17,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import {
+  BEPINEX_RELEASE,
   CHECKED_LABEL,
   categories,
   mods,
@@ -61,6 +62,7 @@ export function Catalog() {
         mod.authors,
         mod.summary,
         mod.version,
+        mod.updatedLabel,
         ...mod.features,
         ...mod.categories.map(categoryLabel),
       ]
@@ -107,7 +109,7 @@ export function Catalog() {
           <p className="font-heading text-sm tracking-[0.18em] text-primary uppercase">
             Steam · Windows · BepInEx
           </p>
-          <p className="text-sm text-muted-foreground">Tjekket {CHECKED_LABEL}</p>
+          <p className="text-sm text-muted-foreground">Sidst opdateret {CHECKED_LABEL}</p>
         </div>
         <div className="max-w-3xl">
           <h1 className="font-heading text-4xl leading-tight font-medium tracking-tight sm:text-6xl">
@@ -223,9 +225,8 @@ export function Catalog() {
                   <h2 className="font-heading mt-3 text-2xl leading-snug font-medium">
                     {mod.name}
                   </h2>
-                  <p className="mt-1 text-sm text-muted-foreground">
-                    {mod.authors} · {mod.releasedLabel}
-                  </p>
+                  <p className="mt-1 text-sm text-muted-foreground">{mod.authors}</p>
+                  <UpdatedLine mod={mod} />
                   <p className="mt-3 flex-1 leading-relaxed text-foreground/85">{mod.summary}</p>
                   <div className="mt-4 flex flex-wrap gap-1.5">
                     {mod.categories.map((category) => (
@@ -272,7 +273,8 @@ export function Catalog() {
                 Chaos Mod og stack-forken har BepInEx med i zippen. 8 Player Mod og
                 online-prototyperne kræver, at du installerer BepInEx 5 x64 selv og
                 starter spillet én gang, før plugin-filen lægges i{" "}
-                <span className="font-medium">BepInEx\plugins</span>.
+                <span className="font-medium">BepInEx\plugins</span>. Seneste stabile
+                udgave i 5.x-linjen er BepInEx {BEPINEX_RELEASE}.
               </li>
               <li>
                 Kun én <span className="font-medium">BoomerangFoo.dll</span> kan være
@@ -317,6 +319,17 @@ export function Catalog() {
         {openMod ? <ModDialog mod={openMod} onOpen={setOpenId} /> : null}
       </Dialog>
     </div>
+  );
+}
+
+function UpdatedLine({ mod }: { mod: ModEntry }) {
+  return (
+    <p className="mt-1 text-sm text-muted-foreground">
+      Sidst opdateret {mod.updatedLabel}
+      {mod.updateNote ? (
+        <span className="mt-0.5 block text-foreground/70">{mod.updateNote}</span>
+      ) : null}
+    </p>
   );
 }
 
@@ -377,13 +390,16 @@ function ModDialog({ mod, onOpen }: { mod: ModEntry; onOpen: (id: string) => voi
       <DialogHeader>
         <div className="flex flex-wrap items-center gap-2">
           <Badge className={statusTone[mod.status]}>{statusLabel(mod.status)}</Badge>
-          <span className="text-sm text-muted-foreground">{mod.releasedLabel}</span>
+          <span className="text-sm text-muted-foreground">
+            Sidst opdateret {mod.updatedLabel}
+          </span>
         </div>
         <DialogTitle className="text-2xl">{mod.name}</DialogTitle>
         <DialogDescription>
           {mod.authors}. Version {mod.version}.
         </DialogDescription>
       </DialogHeader>
+      {mod.updateNote ? <p className="text-sm leading-relaxed text-muted-foreground">{mod.updateNote}</p> : null}
       {parent || family.children.length > 0 ? (
         <Section title="Stamtræ">
           {parent ? (

@@ -22,6 +22,6 @@ npm run build
 
 ## Hvad listen dækker
 
-Kilderne er tjekket 6. november 2026. Spillet var da på version 1.4.0 (3. november 2026). Ingen af modsene er bekræftet på den version.
+Kilderne er tjekket 7. november 2026. Hvert kort viser, hvornår modden sidst blev opdateret offentligt. Spillet var da på version 1.4.0 (3. november 2026). Ingen af modsene er bekræftet på den version. BepInEx 5.4.23.6, som modsene i 5.x-linjen bruger, blev udgivet 24. oktober 2026.
 
 Data ligger i `data/mods.ts`.

@@ -1,4 +1,6 @@
-export const CHECKED_LABEL = "6. november 2026";
+export const CHECKED_LABEL = "7. november 2026";
+
+export const BEPINEX_RELEASE = "5.4.23.6, udgivet 24. oktober 2026";
 
 export const categories = [
   { id: "spiltilstand", label: "Spiltilstande" },
@@ -65,6 +67,9 @@ export type ModEntry = {
   version: string;
   released: string;
   releasedLabel: string;
+  updated: string;
+  updatedLabel: string;
+  updateNote?: string;
   status: StatusId;
   categories: CategoryId[];
   summary: string;
@@ -85,6 +90,10 @@ export const mods: ModEntry[] = [
     version: "0.5.4",
     released: "2025-08-02",
     releasedLabel: "2. august 2025",
+    updated: "2025-12-19",
+    updatedLabel: "19. december 2025",
+    updateNote:
+      "Udgivelse 0.5.4 er fra 2. august 2025. Committen 19. december er kun Steam Deck-afsnittet i readme.",
     status: "udgivet",
     categories: ["spiltilstand", "indstillinger", "powerups", "spillere"],
     summary:
@@ -131,6 +140,10 @@ export const mods: ModEntry[] = [
     version: "0.5.6",
     released: "2026-08-15",
     releasedLabel: "15. august 2026",
+    updated: "2026-09-09",
+    updatedLabel: "9. september 2026",
+    updateNote:
+      "Zippen 0.5.6 er fra 15. august 2026. Repoet har commits 9. september, efter den zip.",
     status: "udgivet",
     categories: ["spiltilstand", "indstillinger", "powerups", "spillere"],
     summary:
@@ -173,6 +186,8 @@ export const mods: ModEntry[] = [
     version: "3.0.0 beta",
     released: "2026-10-16",
     releasedLabel: "16. oktober 2026",
+    updated: "2026-10-16",
+    updatedLabel: "16. oktober 2026",
     status: "beta",
     categories: ["spillere"],
     summary:
@@ -213,6 +228,8 @@ export const mods: ModEntry[] = [
     version: "Prototype 2",
     released: "2026-07-09",
     releasedLabel: "9. juli 2026",
+    updated: "2026-07-09",
+    updatedLabel: "9. juli 2026",
     status: "prototype",
     categories: ["online", "spillere"],
     summary:
@@ -245,33 +262,41 @@ export const mods: ModEntry[] = [
     id: "remix",
     name: "Boomerang Foo Remix",
     authors: "alialyami90, fork af Jeffjewett27",
-    version: "Kildekode, 30. oktober 2026",
-    released: "2026-10-30",
-    releasedLabel: "30. oktober 2026",
+    version: "Kildekode",
+    released: "2026-11-06",
+    releasedLabel: "6. november 2026",
+    updated: "2026-11-06",
+    updatedLabel: "6. november 2026",
     status: "kildekode",
     categories: ["powerups", "indstillinger", "spiltilstand"],
     summary:
-      "Chaos Mod med separate start-powerups og loot-puljer for mennesker og bots, plus vægte på hvor ofte hver powerup spawner. Der er ingen færdig zip.",
+      "Chaos Mod med egne powerup-regler, spiltilstanden Russian Roulette, et hjørne-display for menneskers powerups og et Windows-script, der bygger den nyeste kildekode. Der er stadig ingen færdig zip.",
     features: [
       "Start-powerups er delt i et gitter til mennesker og et til bots.",
       "Hver side kan have sin egen pulje af powerups fra bøger på banen.",
       "Hver powerup har en spawn-vægt: Off, Rare, Low, Normal, High eller Very High.",
-      "Hvis intet er ændret, falder valget tilbage til spillets egen tilfældighed.",
-      "Resten er den Chaos Mod, forken er taget fra, inklusive spiltilstande og den eksisterende modifier-menu.",
+      "Russian Roulette: hver runde får alle et tilfældigt sæt powerups, som standard tre, og der spawner ingen flere på banen.",
+      "Powerup-display: menneskers aktuelle powerups vises i hvert sit hjørne. Det kan slås fra i modifier-menuen.",
+      "Kampstatistik på rundeslutskærmen, med holdtotaler og rækker for de menneskelige spillere. Det ligger i koden fra 6. november 2026.",
+      "Resten er den Chaos Mod, forken er taget fra, inklusive de ældre spiltilstande og modifier-menuen.",
     ],
     install: [
-      "Der er ingen release. Klon repoet og byg med .NET SDK.",
-      "Kopiér Directory.Build.props.example til Directory.Build.props og sæt GamePath til din spilmappe, så projektet kan se Assembly-CSharp.dll.",
-      "Byg Release fra src. En release-build kopierer dll’en ind i BepInEx\\plugins\\BoomerangFoo.",
+      "Der er ingen GitHub-release. Installér .NET SDK 8 eller nyere én gang.",
+      "Hent Install-BoomerangFoo.bat fra repoet og dobbeltklik på den. Den henter master, finder spillet via Steam, bygger modden og lægger den ind.",
+      "Første kørsel tager nogle minutter. Loggen havner i %TEMP%\\BoomerangFooRemix-install.log, hvis noget fejler.",
     ],
     compatibility:
-      "Bygget oven på Chaos Mod efter README-opdateringen 19. december 2025, med egne ændringer 29.–30. oktober 2026. Samme forbehold som Chaos Mod over for 1.4.0, og den er ikke prøvet af som færdig pakke.",
+      "Sidste commit på master er 6. november 2026. De første egne ændringer er fra 29.–30. oktober 2026, oven på Chaos Mod efter README-opdateringen 19. december 2025. Samme forbehold som Chaos Mod over for 1.4.0, og den er ikke prøvet af som færdig pakke.",
     conflicts:
       "Den lægger sin egen BoomerangFoo.dll ind og erstatter derfor Chaos Mod, stack-forken og Slaughter House.",
     links: [
       {
         label: "GitHub",
         href: "https://github.com/alialyami90/BoomerangFooRemix",
+      },
+      {
+        label: "Install-BoomerangFoo.bat",
+        href: "https://github.com/alialyami90/BoomerangFooRemix/blob/master/Install-BoomerangFoo.bat",
       },
       {
         label: "Ændringen",
@@ -287,6 +312,8 @@ export const mods: ModEntry[] = [
     version: "0.4.1",
     released: "2025-03-02",
     releasedLabel: "2. marts 2025",
+    updated: "2025-03-02",
+    updatedLabel: "2. marts 2025",
     status: "foraeldet",
     categories: ["spiltilstand"],
     summary:
@@ -325,6 +352,8 @@ export const mods: ModEntry[] = [
     version: "Første prototype",
     released: "2026-06-14",
     releasedLabel: "14. juni 2026",
+    updated: "2026-06-14",
+    updatedLabel: "14. juni 2026",
     status: "foraeldet",
     categories: ["online"],
     summary:
@@ -362,6 +391,8 @@ export const mods: ModEntry[] = [
     version: "1.0.0",
     released: "2022-12-23",
     releasedLabel: "23. december 2022",
+    updated: "2022-12-23",
+    updatedLabel: "23. december 2022",
     status: "foraeldet",
     categories: ["kosmetik"],
     summary:
@@ -401,6 +432,10 @@ export const mods: ModEntry[] = [
     version: "Opdateret til 1.3.5",
     released: "2024-09-16",
     releasedLabel: "16. september 2024",
+    updated: "2025-03-30",
+    updatedLabel: "30. marts 2025",
+    updateNote:
+      "Reddit-opslaget er fra 16. september 2024. Datoen her er kommentaren 30. marts 2025, som omtalte en build til spilversion 1.3.5.",
     status: "discord",
     categories: ["spiltilstand", "indstillinger", "powerups"],
     summary:
