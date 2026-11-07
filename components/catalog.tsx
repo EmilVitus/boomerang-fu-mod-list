@@ -3,6 +3,7 @@
 import { useMemo, useState, type ReactNode } from "react";
 import { Search, ExternalLink } from "lucide-react";
 
+import { FeatureTable } from "@/components/feature-table";
 import { LineageTree } from "@/components/lineage-tree";
 import { statusLabel, statusTone } from "@/components/status-tone";
 import { Badge } from "@/components/ui/badge";
@@ -174,6 +175,17 @@ export function Catalog() {
                   <FilterChip pressed={view === "liste"} onClick={() => setView("liste")}>
                     Liste
                   </FilterChip>
+                  <FilterChip
+                    pressed={false}
+                    onClick={() =>
+                      document.getElementById("chaos-funktioner")?.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start",
+                      })
+                    }
+                  >
+                    Funktionstabel
+                  </FilterChip>
                 </FilterRow>
                 {view === "liste" ? (
                   <FilterRow label="Sortering">
@@ -257,6 +269,8 @@ export function Catalog() {
             </Button>
           </div>
         ) : null}
+
+        <FeatureTable onOpen={setOpenId} />
 
         <section className="mt-12 grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
           <div className="rounded-2xl border bg-card p-5 sm:p-6">
