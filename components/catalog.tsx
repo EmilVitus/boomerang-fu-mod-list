@@ -186,6 +186,17 @@ export function Catalog() {
                   >
                     Funktionstabel
                   </FilterChip>
+                  <FilterChip
+                    pressed={false}
+                    onClick={() =>
+                      document.getElementById("ekstra-spillere")?.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start",
+                      })
+                    }
+                  >
+                    Ekstra spillere
+                  </FilterChip>
                 </FilterRow>
                 {view === "liste" ? (
                   <FilterRow label="Sortering">
