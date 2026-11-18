@@ -117,7 +117,7 @@ export function Catalog() {
             Alle offentlige Boomerang Fu-mods til Windows
           </h1>
           <p className="mt-4 max-w-2xl text-lg leading-relaxed text-foreground/80">
-            Ni mods og forks, som kan hentes eller læses uden at være med i en lukket
+            Ti mods og forks, som kan hentes eller læses uden at være med i en lukket
             gruppe. Stamtræet viser, hvilken der er bygget oven på hvilken. Spillet
             fik version 1.4.0 den 3. november 2026. Ingen af dem er bekræftet på den
             build.
@@ -126,7 +126,7 @@ export function Catalog() {
         <dl className="grid grid-cols-2 gap-3 sm:grid-cols-4">
           <Stat label="Mods i listen" value={String(mods.length)} />
           <Stat label="Med en zip" value="5" />
-          <Stat label="Kun kilde eller Discord" value="2" />
+          <Stat label="Kun kilde eller Discord" value="3" />
           <Stat label="Online-prototyper" value="2" />
         </dl>
       </header>
@@ -223,7 +223,7 @@ export function Catalog() {
           <div className="mt-8 rounded-2xl border border-dashed bg-card/70 px-6 py-14 text-center">
             <p className="font-heading text-2xl">Ingen mods matcher</p>
             <p className="mx-auto mt-2 max-w-md text-muted-foreground">
-              Søgningen og filtrene rammer ingen af de ni poster. Ryd dem, og hele
+              Søgningen og filtrene rammer ingen af de ti poster. Ryd dem, og hele
               listen kommer tilbage.
             </p>
             <Button className="mt-5" onClick={resetFilters}>

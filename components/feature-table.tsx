@@ -31,7 +31,9 @@ export function FeatureTable({ onOpen }: { onOpen: (id: string) => void }) {
         Stack og Remix har Chaos Mods funktioner fra 0.5.4 med, fordi de commits
         ligger i deres historik. Delt betyder, at Remix giver mennesker og bots hver
         deres sæt. Efter zippen er otte controllere, commit’et 9. september 2026,
-        efter 0.5.6-zippen fra 15. august.
+        efter 0.5.6-zippen fra 15. august. Boomerang Mods fra 13. november står i
+        listen ved siden af. Den har Gravity Well, Slaughter House og et loft på
+        otte, og den har ikke sin egen kolonne her.
       </p>
       <div className="mt-4 max-h-[70vh] overflow-auto rounded-xl border">
         <table className="w-full min-w-[44rem] border-separate border-spacing-0 text-sm">

@@ -1,4 +1,4 @@
-export const CHECKED_LABEL = "7. november 2026";
+export const CHECKED_LABEL = "18. november 2026";
 
 export const BEPINEX_RELEASE = "5.4.23.6, udgivet 24. oktober 2026";
 
@@ -40,6 +40,7 @@ export const lineage: LineageEntry[] = [
   { id: "slaughter", basedOn: "chaos", relation: "Fork af 0.4.1" },
   { id: "stack", basedOn: "chaos", relation: "Viderebygning til 0.5.6" },
   { id: "remix", basedOn: "chaos", relation: "Fork efter december 2025" },
+  { id: "gravity", basedOn: "chaos", relation: "Chaos, Slaughter House og Gravity Well" },
   { id: "online-1", basedOn: null, relation: null },
   { id: "online-2", basedOn: "online-1", relation: "Næste prototype" },
   { id: "eight", basedOn: null, relation: null },
@@ -263,21 +264,23 @@ export const mods: ModEntry[] = [
     name: "Boomerang Foo Remix",
     authors: "alialyami90, fork af Jeffjewett27",
     version: "Kildekode",
-    released: "2026-11-06",
-    releasedLabel: "6. november 2026",
-    updated: "2026-11-06",
-    updatedLabel: "6. november 2026",
+    released: "2026-11-13",
+    releasedLabel: "13. november 2026",
+    updated: "2026-11-13",
+    updatedLabel: "13. november 2026",
     status: "kildekode",
-    categories: ["powerups", "indstillinger", "spiltilstand"],
+    categories: ["powerups", "indstillinger", "spiltilstand", "spillere"],
     summary:
-      "Chaos Mod med egne powerup-regler, spiltilstanden Russian Roulette, et hjørne-display for menneskers powerups og et Windows-script, der bygger den nyeste kildekode. Der er stadig ingen færdig zip.",
+      "Chaos Mod med egne powerup-regler, Russian Roulette og rettelser, så kampe med syv eller flere figurer kan starte og nå afslutningsskærmen. Sidste commit er 13. november 2026. Der er stadig ingen færdig zip.",
     features: [
       "Start-powerups er delt i et gitter til mennesker og et til bots.",
       "Hver side kan have sin egen pulje af powerups fra bøger på banen.",
       "Hver powerup har en spawn-vægt: Off, Rare, Low, Normal, High eller Very High.",
       "Russian Roulette: hver runde får alle et tilfældigt sæt powerups, som standard tre, og der spawner ingen flere på banen.",
       "Powerup-display: menneskers aktuelle powerups vises i hvert sit hjørne. Det kan slås fra i modifier-menuen.",
-      "Kampstatistik på rundeslutskærmen, med holdtotaler og rækker for de menneskelige spillere. Det ligger i koden fra 6. november 2026.",
+      "Kampstatistik efter hver runde og på vinder-skærmen. Tabellen fader sammen med replayet, når man trykker R2.",
+      "Smid den nyeste powerup med Q eller d-pad ned. De øvrige gives igen, og et skjold beholder de hit, det har tilbage.",
+      "Syv eller flere figurer: livbarer og præmiekort bliver oprettet forbi de seks, så runden kan starte og afslutningsskærmen ikke låser. Bots flyttes væk fra menneskers spawn.",
       "Resten er den Chaos Mod, forken er taget fra, inklusive de ældre spiltilstande og modifier-menuen.",
     ],
     install: [
@@ -286,7 +289,7 @@ export const mods: ModEntry[] = [
       "Første kørsel tager nogle minutter. Loggen havner i %TEMP%\\BoomerangFooRemix-install.log, hvis noget fejler.",
     ],
     compatibility:
-      "Sidste commit på master er 6. november 2026. De første egne ændringer er fra 29.–30. oktober 2026, oven på Chaos Mod efter README-opdateringen 19. december 2025. Samme forbehold som Chaos Mod over for 1.4.0, og den er ikke prøvet af som færdig pakke.",
+      "Sidste commit på master er 13. november 2026. De første egne ændringer er fra 29.–30. oktober 2026, oven på Chaos Mod efter README-opdateringen 19. december 2025. Samme forbehold som Chaos Mod over for 1.4.0, og den er ikke prøvet af som færdig pakke.",
     conflicts:
       "Den lægger sin egen BoomerangFoo.dll ind og erstatter derfor Chaos Mod, stack-forken og Slaughter House.",
     links: [
@@ -299,11 +302,48 @@ export const mods: ModEntry[] = [
         href: "https://github.com/alialyami90/BoomerangFooRemix/blob/master/Install-BoomerangFoo.bat",
       },
       {
-        label: "Ændringen",
-        href: "https://github.com/alialyami90/BoomerangFooRemix/commit/94bb3c4ad72270bc073ea79c12447031bc8e2be6",
+        label: "Seneste commit",
+        href: "https://github.com/alialyami90/BoomerangFooRemix/commit/a62566a6",
       },
     ],
     rank: 5,
+  },
+  {
+    id: "gravity",
+    name: "Boomerang Mods",
+    authors: "acaburaz, oven på Jeffjewett27 og william-spongberg",
+    version: "Kildekode",
+    released: "2026-11-13",
+    releasedLabel: "13. november 2026",
+    updated: "2026-11-13",
+    updatedLabel: "13. november 2026",
+    status: "kildekode",
+    categories: ["spiltilstand", "powerups", "spillere"],
+    summary:
+      "En ny pakke fra 13. november 2026 med Chaos-tilstandene, Slaughter House, powerup’en Gravity Well og et loft på otte spillere. Readme’en nævner en zip, men der er ingen release.",
+    features: [
+      "Gravity Well: en eksplosion efterlader et lilla felt, der trækker de andre ind mod midten. Varighed, radius og trækstyrke kan sættes i menuen.",
+      "Slaughter House fra william-spongbergs fork, med liv og respawn-forsinkelse.",
+      "Power Drain, Juggernaut, Survive 'Till Dawn og Team Golden følger med, sammen med de kendte powerup-modifiers.",
+      "Loftet er otte spillere i alt, mennesker og bots tilsammen. Spillets eget loft er seks.",
+      "F1 åbner spillets debug. F2 giver alle levende spillere alle powerups.",
+    ],
+    install: [
+      "Der er ingen release, selv om readme’en skriver, at man skal hente en zip.",
+      "Klon repoet. Sæt GamePath i src/BoomerangFoo.csproj til spilmappen.",
+      "Byg med dotnet build -c Debug fra mappen src. Buildet kopierer BoomerangFoo.dll ind i BepInEx\\plugins\\BoomerangFoo.",
+    ],
+    compatibility:
+      "Ét commit, 13. november 2026. I kilden står NoBoomerangs som true fra start, så tjek modifieren Uden boomeranger, hvis kampen begynder uden boomeranger. Samme forbehold over for spilversion 1.4.0 som de andre Chaos-forks. Den er ikke prøvet af som færdig pakke.",
+    conflicts:
+      "Den lægger sin egen BoomerangFoo.dll ind og erstatter Chaos Mod, stack-forken, Remix, Slaughter House og 8 Player Mod.",
+    links: [
+      {
+        label: "GitHub",
+        href: "https://github.com/acaburaz/boomerang-mods",
+      },
+    ],
+    rank: 6,
   },
   {
     id: "slaughter",
@@ -343,7 +383,7 @@ export const mods: ModEntry[] = [
       },
     ],
     downloads: "56 downloads af 0.4.1-zippen på GitHub",
-    rank: 6,
+    rank: 7,
   },
   {
     id: "online-1",
@@ -382,7 +422,7 @@ export const mods: ModEntry[] = [
         href: "https://www.reddit.com/r/BoomerangFu/comments/1urnyqs/boomerang_fu_online_multiplayer_mod_second/",
       },
     ],
-    rank: 7,
+    rank: 8,
   },
   {
     id: "hats",
@@ -423,7 +463,7 @@ export const mods: ModEntry[] = [
       },
     ],
     downloads: "14 downloads af hattepakken på GitHub",
-    rank: 8,
+    rank: 9,
   },
   {
     id: "original",
@@ -463,7 +503,7 @@ export const mods: ModEntry[] = [
         href: "https://github.com/Jeffjewett27/BoomerangFoo",
       },
     ],
-    rank: 9,
+    rank: 10,
   },
 ];
 
@@ -477,6 +517,10 @@ export const omitted = [
     body: "tomkimberlin/BoomerangFoo er en fork uden egne commits. Den er den samme kode som Jeffjewett27 og tæller ikke som en selvstændig mod.",
   },
   {
+    title: "ORDER",
+    body: "Repoet raverhong3300-png/ORDER-BoomerangFu fra 16. november 2026 indeholder kun en kort readme. Releasen v1.0.0 lægger zippen ORDER-2.0.0-.zip op uden kildekode ved siden af, og teksten siger, at installationen kommer senere. Den er ikke taget med, og zippen bør ikke hentes.",
+  },
+  {
     title: "Repoet Boomerang Fu Trainer",
     body: "Et GitHub-repo med det navn er en generisk skabelon. Download-knappen peger på et andet projekt, og teksten lover sigte, våben og liv, som Boomerang Fu ikke har. Det er udeladt, og filen bør ikke hentes.",
   },
@@ -486,6 +530,6 @@ export const omitted = [
   },
   {
     title: "Officielt indhold og andre spil",
-    body: "Fresh Flavors, Just Desserts og Street Food er DLC fra Cranky Watermelon, ikke mods. En boomerang-evne på Thunderstore hører til Bopl Battle.",
+    body: "Fresh Flavors, Just Desserts og Street Food er DLC fra Cranky Watermelon, ikke mods. En boomerang-evne på Thunderstore hører til Bopl Battle. boomerang-fu-web og Bumerang-Duell VR er egne spil, ikke mods til Steam-udgaven.",
   },
 ];

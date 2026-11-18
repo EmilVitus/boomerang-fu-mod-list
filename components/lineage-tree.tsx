@@ -20,7 +20,7 @@ const groups: {
     id: "chaos",
     title: "Chaos-familien",
     summary:
-      "Discord-modden blev til Jeff Jewetts BepInEx-udgave, og tre projekter er forket derfra. De lægger alle BoomerangFoo.dll ind, så de erstatter hinanden. Kortet for Chaos Mod viser udgivelse 0.5.4. Slaughter House er forket fra 0.4.1, før de senere tilføjelser.",
+      "Discord-modden blev til Jeff Jewetts BepInEx-udgave, og fire projekter er forket derfra. De lægger alle BoomerangFoo.dll ind, så de erstatter hinanden. Kortet for Chaos Mod viser udgivelse 0.5.4. Slaughter House er forket fra 0.4.1, før de senere tilføjelser.",
     rootIds: ["original"],
   },
   {
