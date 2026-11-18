@@ -26,20 +26,18 @@ export function FeatureTable({ onOpen }: { onOpen: (id: string) => void }) {
     <section id="chaos-funktioner" className="mt-12 rounded-2xl border bg-card p-4 shadow-sm sm:p-6">
       <h2 className="font-heading text-2xl font-medium">Chaos-familiens funktioner</h2>
       <p className="mt-2 max-w-3xl text-sm leading-relaxed text-muted-foreground">
-        Discord-kolonnen følger opslaget fra 16. september 2024. Det nævner tre nye
-        spiltilstande uden navne, så de fire navngivne tilstande står som ukendt dér.
         Stack og Remix har Chaos Mods funktioner fra 0.5.4 med, fordi de commits
         ligger i deres historik. Delt betyder, at Remix giver mennesker og bots hver
         deres sæt. Efter zippen er otte controllere, commit’et 9. september 2026,
-        efter 0.5.6-zippen fra 15. august. Boomerang Mods fra 13. november står i
-        listen ved siden af. Den har Gravity Well, Slaughter House og et loft på
-        otte, og den har ikke sin egen kolonne her.
+        efter 0.5.6-zippen fra 15. august. Boomerang Mods er kildepakken fra
+        13. november 2026. Den har Gravity Well, Slaughter House og et loft på otte
+        spillere i alt. Ukendt betyder, at den funktion ikke er nævnt i kilden.
       </p>
       <div className="mt-4 max-h-[70vh] overflow-auto rounded-xl border">
         <table className="w-full min-w-[44rem] border-separate border-spacing-0 text-sm">
           <caption className="sr-only">
-            Hvilke funktioner Discord-modden, Slaughter House 0.4.1, Chaos Mod 0.5.4,
-            stack-forken 0.5.6 og Remix har.
+            Hvilke funktioner Slaughter House 0.4.1, Chaos Mod 0.5.4, stack-forken 0.5.6,
+            Remix og Boomerang Mods har.
           </caption>
           <thead>
             <tr>
