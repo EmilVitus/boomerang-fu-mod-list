@@ -1,6 +1,6 @@
 "use client";
 
-import { Fragment } from "react";
+import { Fragment, useMemo } from "react";
 
 import {
   chaosColumns,
@@ -9,6 +9,8 @@ import {
   type FeatureCell,
 } from "@/data/chaos-features";
 import { playerRows } from "@/data/player-counts";
+import { localize } from "@/lib/copy";
+import { useLocale, useUi } from "@/lib/locale";
 
 const cellClass: Record<FeatureCell, string> = {
   ja: "bg-primary/15 text-primary font-medium",
@@ -21,33 +23,30 @@ const cellClass: Record<FeatureCell, string> = {
 const raisedClass = "bg-primary/15 font-medium text-primary";
 
 export function FeatureTable({ onOpen }: { onOpen: (id: string) => void }) {
+  const { locale } = useLocale();
+  const m = useUi();
+  const copy = useMemo(
+    () => localize(locale, { chaosColumns, chaosFeatureGroups, featureCellLabel, playerRows }),
+    [locale],
+  );
+
   return (
     <>
     <section id="chaos-funktioner" className="mt-12 rounded-2xl border bg-card p-4 shadow-sm sm:p-6">
-      <h2 className="font-heading text-2xl font-medium">Chaos-familiens funktioner</h2>
-      <p className="mt-2 max-w-3xl text-sm leading-relaxed text-muted-foreground">
-        Stack og Remix har Chaos Mods funktioner fra 0.5.4 med, fordi de commits
-        ligger i deres historik. Delt betyder, at Remix giver mennesker og bots hver
-        deres sæt. Efter zippen er otte controllere, commit’et 9. september 2026,
-        efter 0.5.6-zippen fra 15. august. Boomerang Mods er kildepakken fra
-        13. november 2026. Den har Gravity Well, Slaughter House og et loft på otte
-        spillere i alt. Ukendt betyder, at den funktion ikke er nævnt i kilden.
-      </p>
+      <h2 className="font-heading text-2xl font-medium">{m.chaosTitle}</h2>
+      <p className="mt-2 max-w-3xl text-sm leading-relaxed text-muted-foreground">{m.chaosIntro}</p>
       <div className="mt-4 max-h-[70vh] overflow-auto rounded-xl border">
         <table className="w-full min-w-[44rem] border-separate border-spacing-0 text-sm">
-          <caption className="sr-only">
-            Hvilke funktioner Slaughter House 0.4.1, Chaos Mod 0.5.4, stack-forken 0.5.6,
-            Remix og Boomerang Mods har.
-          </caption>
+          <caption className="sr-only">{m.chaosCaption}</caption>
           <thead>
             <tr>
               <th
                 scope="col"
                 className="sticky top-0 left-0 z-30 bg-card px-3 py-3 text-left font-medium"
               >
-                Funktion
+                {m.featureColumn}
               </th>
-              {chaosColumns.map((column) => (
+              {copy.chaosColumns.map((column) => (
                 <th
                   key={column.id}
                   scope="col"
@@ -68,11 +67,11 @@ export function FeatureTable({ onOpen }: { onOpen: (id: string) => void }) {
             </tr>
           </thead>
           <tbody>
-            {chaosFeatureGroups.map((group) => (
+            {copy.chaosFeatureGroups.map((group) => (
               <Fragment key={group.title}>
                 <tr>
                   <th
-                    colSpan={chaosColumns.length + 1}
+                    colSpan={copy.chaosColumns.length + 1}
                     scope="colgroup"
                     className="bg-muted/70 px-3 py-2 text-left font-heading text-base font-medium"
                   >
@@ -87,14 +86,14 @@ export function FeatureTable({ onOpen }: { onOpen: (id: string) => void }) {
                     >
                       {feature.name}
                     </th>
-                    {chaosColumns.map((column) => {
+                    {copy.chaosColumns.map((column) => {
                       const cell = feature.cells[column.id];
                       return (
                         <td
                           key={column.id}
                           className={`border-t px-2 py-2 text-center ${cellClass[cell]}`}
                         >
-                          {featureCellLabel[cell]}
+                          {copy.featureCellLabel[cell]}
                         </td>
                       );
                     })}
@@ -108,23 +107,14 @@ export function FeatureTable({ onOpen }: { onOpen: (id: string) => void }) {
     </section>
 
     <section id="ekstra-spillere" className="mt-6 rounded-2xl border bg-card p-4 shadow-sm sm:p-6">
-      <h2 className="font-heading text-2xl font-medium">Ekstra spillere</h2>
-      <p className="mt-2 max-w-3xl text-sm leading-relaxed text-muted-foreground">
-        Spillet har seks lokale mennesker. Farvede celler er det, modden lægger oveni.
-        Chaos Mod og Remix fylder de ekstra pladser med bots. 8 Player Mod lægger to
-        menneskepladser til og lader bot-loftet være. Stack-forken har begge dele i
-        koden: otte controllere blev commit’et 9. september 2026, efter 0.5.6-zippen,
-        som allerede nævner en lobby til 12. Fysiske controllere 7 og 8 er ikke testet
-        i 8 Player Mod. Bot-kampe er.
-      </p>
+      <h2 className="font-heading text-2xl font-medium">{m.playersTitle}</h2>
+      <p className="mt-2 max-w-3xl text-sm leading-relaxed text-muted-foreground">{m.playersIntro}</p>
       <div className="mt-4 overflow-auto rounded-xl border">
         <table className="w-full min-w-[44rem] border-separate border-spacing-0 text-sm">
-          <caption className="sr-only">
-            Hvor mange lokale mennesker, bots og netværksspillere hver mod lægger til.
-          </caption>
+          <caption className="sr-only">{m.playersCaption}</caption>
           <thead>
             <tr>
-              {["Mod", "Mennesker ved skærmen", "Bots", "Samlet loft", "Over nettet"].map(
+              {m.playerHeaders.map(
                 (label, index) => (
                   <th
                     key={label}
@@ -141,7 +131,7 @@ export function FeatureTable({ onOpen }: { onOpen: (id: string) => void }) {
             </tr>
           </thead>
           <tbody>
-            {playerRows.map((row) => (
+            {copy.playerRows.map((row) => (
               <tr key={row.name}>
                 <th
                   scope="row"

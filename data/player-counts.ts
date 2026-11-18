@@ -1,97 +1,105 @@
+import { c, type Copy } from "@/lib/copy";
+
 export type PlayerRow = {
   id: string | null;
-  name: string;
-  detail: string;
-  humans: string;
-  bots: string;
-  cap: string;
-  online: string;
+  name: Copy;
+  detail: Copy;
+  humans: Copy;
+  bots: Copy;
+  cap: Copy;
+  online: Copy;
   extraHumans: boolean;
   extraBots: boolean;
   extraOnline: boolean;
 };
 
+const same = (text: string) => c(text, text);
+const no = c("Nej", "No");
+
 export const playerRows: PlayerRow[] = [
   {
     id: null,
-    name: "Spillet selv",
-    detail: "uden mod",
-    humans: "6",
-    bots: "Spillets egne",
-    cap: "6",
-    online: "Nej",
+    name: c("Spillet selv", "The game itself"),
+    detail: c("uden mod", "no mod"),
+    humans: same("6"),
+    bots: c("Spillets egne", "The game's own"),
+    cap: same("6"),
+    online: no,
     extraHumans: false,
     extraBots: false,
     extraOnline: false,
   },
   {
     id: "chaos",
-    name: "Chaos Mod",
-    detail: "0.5.4",
-    humans: "6",
-    bots: "Op til 11",
-    cap: "12 figurer",
-    online: "Nej",
+    name: same("Chaos Mod"),
+    detail: same("0.5.4"),
+    humans: same("6"),
+    bots: c("Op til 11", "Up to 11"),
+    cap: c("12 figurer", "12 figures"),
+    online: no,
     extraHumans: false,
     extraBots: true,
     extraOnline: false,
   },
   {
     id: "remix",
-    name: "Remix",
-    detail: "13. november 2026",
-    humans: "6",
-    bots: "Op til 11. Afslutningen rettet 13. november",
-    cap: "12 figurer",
-    online: "Nej",
+    name: same("Remix"),
+    detail: c("13. november 2026", "13 November 2026"),
+    humans: same("6"),
+    bots: c(
+      "Op til 11. Afslutningen rettet 13. november",
+      "Up to 11. Results fixed 13 November",
+    ),
+    cap: c("12 figurer", "12 figures"),
+    online: no,
     extraHumans: false,
     extraBots: true,
     extraOnline: false,
   },
   {
     id: "gravity",
-    name: "Boomerang Mods",
-    detail: "13. november 2026",
-    humans: "Op til 8, sammen med bots",
-    bots: "Op til 8, sammen med mennesker",
-    cap: "8",
-    online: "Nej",
+    name: same("Boomerang Mods"),
+    detail: c("13. november 2026", "13 November 2026"),
+    humans: c("Op til 8, sammen med bots", "Up to 8, shared with bots"),
+    bots: c("Op til 8, sammen med mennesker", "Up to 8, shared with humans"),
+    cap: same("8"),
+    online: no,
     extraHumans: true,
     extraBots: true,
     extraOnline: false,
   },
   {
     id: "stack",
-    name: "Stack-fork",
-    detail: "0.5.6",
-    humans: "8 i repoet efter zippen",
-    bots: "Resten af pladserne",
-    cap: "12",
-    online: "Nej",
+    name: same("Stack-fork"),
+    detail: same("0.5.6"),
+    humans: c("8 i repoet efter zippen", "8 in the repo after the zip"),
+    bots: c("Resten af pladserne", "The remaining slots"),
+    cap: same("12"),
+    online: no,
     extraHumans: true,
     extraBots: true,
     extraOnline: false,
   },
   {
     id: "eight",
-    name: "8 Player Mod",
-    detail: "3.0.0 beta",
-    humans: "8 pladser",
-    bots: "Spillets eget loft",
-    cap: "8",
-    online: "Nej",
+    name: same("8 Player Mod"),
+    detail: same("3.0.0 beta"),
+    humans: c("8 pladser", "8 slots"),
+    bots: c("Spillets eget loft", "The game's own cap"),
+    cap: same("8"),
+    online: no,
     extraHumans: true,
     extraBots: false,
     extraOnline: false,
   },
   {
     id: "online-2",
-    name: "Online, prototype 2",
-    detail: "9. juli 2026",
-    humans: "Flere på samme maskine",
-    bots: "Ja, antal ikke oplyst",
-    cap: "Ikke oplyst",
-    online: "Ja",
+    name: c("Online, prototype 2", "Online, prototype 2"),
+    detail: c("9. juli 2026", "9 July 2026"),
+    humans: c("Flere på samme maskine", "Several on one machine"),
+    bots: c("Ja, antal ikke oplyst", "Yes, count not stated"),
+    cap: c("Ikke oplyst", "Not stated"),
+    online: c("Ja", "Yes"),
     extraHumans: true,
     extraBots: true,
     extraOnline: true,

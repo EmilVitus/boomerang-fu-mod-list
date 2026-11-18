@@ -1,53 +1,34 @@
 "use client";
 
+import { useMemo } from "react";
+
 import { Badge } from "@/components/ui/badge";
-import { lineage, mods, type ModEntry } from "@/data/mods";
+import { lineage, mods } from "@/data/mods";
 import { statusLabel, statusTone } from "@/components/status-tone";
+import { localize } from "@/lib/copy";
+import { useLocale, useUi } from "@/lib/locale";
+
+type ViewMod = ReturnType<typeof localize<typeof mods>>[number];
 
 type TreeNode = {
-  mod: ModEntry;
+  mod: ViewMod;
   relation: string | null;
   children: TreeNode[];
 };
 
-const groups: {
-  id: string;
-  title: string;
-  summary: string;
-  rootIds: string[];
-}[] = [
-  {
-    id: "chaos",
-    title: "Chaos-familien",
-    summary:
-      "Discord-modden blev til Jeff Jewetts BepInEx-udgave, og fire projekter er forket derfra. De lægger alle BoomerangFoo.dll ind, så de erstatter hinanden. Kortet for Chaos Mod viser udgivelse 0.5.4. Slaughter House er forket fra 0.4.1, før de senere tilføjelser.",
-    rootIds: ["original"],
-  },
-  {
-    id: "online",
-    title: "Online",
-    summary:
-      "Samme forfatter lagde først et proof of concept op og byggede derefter den anden prototype oven på det.",
-    rootIds: ["online-1"],
-  },
-  {
-    id: "solo",
-    title: "Egen kodebase",
-    summary:
-      "8 Player Mod og Hat Loader har hver deres repo og deler ikke kode med Chaos-familien eller med hinanden.",
-    rootIds: ["eight", "hats"],
-  },
-];
-
-function branch(id: string): TreeNode {
-  const mod = mods.find((item) => item.id === id);
+function branch(
+  id: string,
+  modList: ViewMod[],
+  lineageList: ReturnType<typeof localize<typeof lineage>>,
+): TreeNode {
+  const mod = modList.find((item) => item.id === id);
   if (!mod) {
-    throw new Error(`Ukendt mod i stamtræet: ${id}`);
+    throw new Error(`Unknown mod in the family tree: ${id}`);
   }
-  const entry = lineage.find((item) => item.id === id);
-  const children = lineage
+  const entry = lineageList.find((item) => item.id === id);
+  const children = lineageList
     .filter((item) => item.basedOn === id)
-    .map((item) => branch(item.id));
+    .map((item) => branch(item.id, modList, lineageList));
   return { mod, relation: entry?.relation ?? null, children };
 }
 
@@ -60,6 +41,30 @@ export function LineageTree({
   filtersActive: boolean;
   onOpen: (id: string) => void;
 }) {
+  const { locale } = useLocale();
+  const m = useUi();
+  const copy = useMemo(() => localize(locale, { mods, lineage }), [locale]);
+  const groups = [
+    {
+      id: "chaos",
+      title: m.chaosFamily,
+      summary: m.chaosFamilySummary,
+      rootIds: ["original"],
+    },
+    {
+      id: "online",
+      title: m.onlineFamily,
+      summary: m.onlineFamilySummary,
+      rootIds: ["online-1"],
+    },
+    {
+      id: "solo",
+      title: m.soloFamily,
+      summary: m.soloFamilySummary,
+      rootIds: ["eight", "hats"],
+    },
+  ];
+
   return (
     <div className="mt-6 space-y-6">
       {groups.map((group) => (
@@ -72,7 +77,7 @@ export function LineageTree({
             {group.rootIds.map((rootId) => (
               <TreeList
                 key={rootId}
-                nodes={[branch(rootId)]}
+                nodes={[branch(rootId, copy.mods, copy.lineage)]}
                 nested={false}
                 matchIds={matchIds}
                 filtersActive={filtersActive}
@@ -84,7 +89,7 @@ export function LineageTree({
       ))}
       {filtersActive ? (
         <p className="text-sm text-muted-foreground">
-          Dæmpede kort matcher ikke filtret. De bliver stående, så man stadig kan se, hvad de er bygget på.
+          {m.treeDimmed}
         </p>
       ) : null}
     </div>
@@ -104,6 +109,8 @@ function TreeList({
   filtersActive: boolean;
   onOpen: (id: string) => void;
 }) {
+  const { locale } = useLocale();
+  const m = useUi();
   return (
     <ul className={nested ? "relative mt-1" : "space-y-4"}>
       {nested ? (
@@ -149,7 +156,7 @@ function TreeList({
               >
                 <span className="flex flex-wrap items-center gap-2">
                   <Badge className={statusTone[node.mod.status]}>
-                    {statusLabel(node.mod.status)}
+                    {statusLabel(node.mod.status, locale)}
                   </Badge>
                   <span className="text-sm text-muted-foreground">{node.mod.version}</span>
                 </span>
@@ -160,7 +167,7 @@ function TreeList({
                   {node.mod.authors}
                 </span>
                 <span className="mt-0.5 block text-sm text-muted-foreground">
-                  Sidst opdateret {node.mod.updatedLabel}
+                  {m.checked(node.mod.updatedLabel)}
                 </span>
                 {node.mod.updateNote ? (
                   <span className="mt-1 block text-xs leading-relaxed text-foreground/70">

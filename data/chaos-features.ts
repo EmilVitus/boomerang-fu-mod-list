@@ -1,31 +1,33 @@
+import { c, type Copy } from "@/lib/copy";
+
 export const chaosColumns = [
-  { id: "slaughter", label: "Slaughter", detail: "0.4.1" },
-  { id: "chaos", label: "Chaos", detail: "0.5.4" },
-  { id: "stack", label: "Stack", detail: "0.5.6" },
-  { id: "remix", label: "Remix", detail: "kilde" },
-  { id: "gravity", label: "Boomerang Mods", detail: "13. nov." },
+  { id: "slaughter", label: "Slaughter", detail: c("0.4.1", "0.4.1") },
+  { id: "chaos", label: "Chaos", detail: c("0.5.4", "0.5.4") },
+  { id: "stack", label: "Stack", detail: c("0.5.6", "0.5.6") },
+  { id: "remix", label: "Remix", detail: c("kilde", "source") },
+  { id: "gravity", label: "Boomerang Mods", detail: c("13. nov.", "13 Nov") },
 ] as const;
 
 export type ChaosColumnId = (typeof chaosColumns)[number]["id"];
 
-/** ja: kilden nævner den. nej: udgaven har den ikke.
- *  ukendt: kilden siger det ikke.
- *  delt: Remix giver mennesker og bots hver deres sæt.
- *  efter-zip: commit’et 9. september 2026, efter 0.5.6-zippen.
+/** ja: the source mentions it. nej: the edition does not have it.
+ *  ukendt: the source does not say.
+ *  delt: Remix gives humans and bots a set each.
+ *  efter-zip: committed 9 September 2026, after the 0.5.6 zip.
  */
 export type FeatureCell = "ja" | "nej" | "ukendt" | "delt" | "efter-zip";
 
 export type FeatureRow = {
-  name: string;
+  name: Copy;
   cells: Record<ChaosColumnId, FeatureCell>;
 };
 
 export type FeatureGroup = {
-  title: string;
+  title: Copy;
   rows: FeatureRow[];
 };
 
-function row(name: string, cells: FeatureCell[]): FeatureRow {
+function row(name: Copy, cells: FeatureCell[]): FeatureRow {
   const [slaughter, chaos, stack, remix, gravity] = cells;
   return {
     name,
@@ -33,72 +35,92 @@ function row(name: string, cells: FeatureCell[]): FeatureRow {
   };
 }
 
+const same = (text: string) => c(text, text);
+
 export const chaosFeatureGroups: FeatureGroup[] = [
   {
-    title: "Spiltilstande",
+    title: c("Spiltilstande", "Game modes"),
     rows: [
-      row("Power Drain", ["ja", "ja", "ja", "ja", "ja"]),
-      row("Juggernaut", ["ja", "ja", "ja", "ja", "ja"]),
-      row("Survive 'Till Dawn", ["ja", "ja", "ja", "ja", "ja"]),
-      row("Team Golden", ["ja", "ja", "ja", "ja", "ja"]),
-      row("Slaughter House", ["ja", "nej", "nej", "nej", "ja"]),
-      row("Russian Roulette", ["nej", "nej", "nej", "ja", "nej"]),
+      row(same("Power Drain"), ["ja", "ja", "ja", "ja", "ja"]),
+      row(same("Juggernaut"), ["ja", "ja", "ja", "ja", "ja"]),
+      row(same("Survive 'Till Dawn"), ["ja", "ja", "ja", "ja", "ja"]),
+      row(same("Team Golden"), ["ja", "ja", "ja", "ja", "ja"]),
+      row(same("Slaughter House"), ["ja", "nej", "nej", "nej", "ja"]),
+      row(same("Russian Roulette"), ["nej", "nej", "nej", "ja", "nej"]),
     ],
   },
   {
-    title: "Kampindstillinger",
+    title: c("Kampindstillinger", "Match settings"),
     rows: [
-      row("Kampens længde", ["ja", "ja", "ja", "ja", "ja"]),
-      row("Hurtigere powerup-spawn", ["ja", "ja", "ja", "ja", "ja"]),
-      row("Maks. antal powerups", ["ja", "ja", "ja", "ja", "ja"]),
-      row("Start-powerups", ["ja", "ja", "ja", "delt", "ja"]),
-      row("Hoppende boomeranger", ["ja", "ja", "ja", "ja", "ja"]),
-      row("Boomerang-størrelse", ["ja", "ja", "ja", "ja", "ja"]),
-      row("Spilhastighed, 10–500 %", ["nej", "ja", "ja", "ja", "ja"]),
-      row("Sudden death-tider", ["nej", "ja", "ja", "ja", "ja"]),
-      row("Knockback", ["nej", "ja", "ja", "ja", "ja"]),
-      row("Uden boomeranger", ["nej", "ja", "ja", "ja", "ja"]),
-      row("Spillets banevalg fra 1.3.5", ["nej", "ja", "ja", "ja", "ukendt"]),
+      row(c("Kampens længde", "Match length"), ["ja", "ja", "ja", "ja", "ja"]),
+      row(c("Hurtigere powerup-spawn", "Faster powerup spawn"), ["ja", "ja", "ja", "ja", "ja"]),
+      row(c("Maks. antal powerups", "Max powerups"), ["ja", "ja", "ja", "ja", "ja"]),
+      row(c("Start-powerups", "Starting powerups"), ["ja", "ja", "ja", "delt", "ja"]),
+      row(c("Hoppende boomeranger", "Bouncy boomerangs"), ["ja", "ja", "ja", "ja", "ja"]),
+      row(c("Boomerang-størrelse", "Boomerang size"), ["ja", "ja", "ja", "ja", "ja"]),
+      row(c("Spilhastighed, 10–500 %", "Game speed, 10–500%"), ["nej", "ja", "ja", "ja", "ja"]),
+      row(c("Sudden death-tider", "Sudden death times"), ["nej", "ja", "ja", "ja", "ja"]),
+      row(same("Knockback"), ["nej", "ja", "ja", "ja", "ja"]),
+      row(c("Uden boomeranger", "No boomerangs"), ["nej", "ja", "ja", "ja", "ja"]),
+      row(c("Spillets banevalg fra 1.3.5", "In-game map selection from 1.3.5"), [
+        "nej",
+        "ja",
+        "ja",
+        "ja",
+        "ukendt",
+      ]),
     ],
   },
   {
-    title: "Powerups",
+    title: same("Powerups"),
     rows: [
-      row("Modifiers i menuen", ["ja", "ja", "ja", "ja", "ja"]),
-      row("Gravity Well", ["nej", "nej", "nej", "nej", "ja"]),
-      row("Separate loot-puljer", ["nej", "nej", "nej", "ja", "nej"]),
-      row("Spawn-vægte", ["nej", "nej", "nej", "ja", "nej"]),
-      row("Stack samme powerup", ["nej", "nej", "ja", "nej", "nej"]),
-      row("Book gacha", ["nej", "nej", "ja", "nej", "nej"]),
-      row("Max Books", ["nej", "nej", "ja", "nej", "nej"]),
-      row("Powerups i hjørnerne", ["nej", "nej", "nej", "ja", "nej"]),
-      row("Kampstatistik", ["nej", "nej", "nej", "ja", "nej"]),
+      row(c("Modifiers i menuen", "Modifiers in the menu"), ["ja", "ja", "ja", "ja", "ja"]),
+      row(same("Gravity Well"), ["nej", "nej", "nej", "nej", "ja"]),
+      row(c("Separate loot-puljer", "Separate loot pools"), ["nej", "nej", "nej", "ja", "nej"]),
+      row(c("Spawn-vægte", "Spawn weights"), ["nej", "nej", "nej", "ja", "nej"]),
+      row(c("Stack samme powerup", "Stack the same powerup"), ["nej", "nej", "ja", "nej", "nej"]),
+      row(same("Book gacha"), ["nej", "nej", "ja", "nej", "nej"]),
+      row(same("Max Books"), ["nej", "nej", "ja", "nej", "nej"]),
+      row(c("Powerups i hjørnerne", "Powerups in the corners"), ["nej", "nej", "nej", "ja", "nej"]),
+      row(c("Kampstatistik", "Match stats"), ["nej", "nej", "nej", "ja", "nej"]),
     ],
   },
   {
-    title: "Spillere",
+    title: c("Spillere", "Players"),
     rows: [
-      row("Op til 11 bots", ["nej", "ja", "ja", "ja", "nej"]),
-      row("Otte lokale controllere", ["nej", "nej", "efter-zip", "nej", "nej"]),
-      row("Loft på 8 i alt", ["nej", "nej", "nej", "nej", "ja"]),
-      row("Afslutningsskærm til 12", ["nej", "nej", "ja", "nej", "nej"]),
-      row("Impossible-bots", ["ja", "ja", "ja", "ja", "ukendt"]),
+      row(c("Op til 11 bots", "Up to 11 bots"), ["nej", "ja", "ja", "ja", "nej"]),
+      row(c("Otte lokale controllere", "Eight local controllers"), [
+        "nej",
+        "nej",
+        "efter-zip",
+        "nej",
+        "nej",
+      ]),
+      row(c("Loft på 8 i alt", "Cap of 8 in total"), ["nej", "nej", "nej", "nej", "ja"]),
+      row(c("Afslutningsskærm til 12", "Results screen for 12"), ["nej", "nej", "ja", "nej", "nej"]),
+      row(c("Impossible-bots", "Impossible bots"), ["ja", "ja", "ja", "ja", "ukendt"]),
     ],
   },
   {
-    title: "Omkring menuen",
+    title: c("Omkring menuen", "Around the menu"),
     rows: [
-      row("Indstillinger i spillets menu", ["ja", "ja", "ja", "ja", "ja"]),
-      row("Oversættelse via JSON", ["nej", "ja", "ja", "ja", "ja"]),
-      row("Debug med F1", ["ja", "ja", "ja", "ja", "ja"]),
+      row(c("Indstillinger i spillets menu", "Settings in the game menu"), [
+        "ja",
+        "ja",
+        "ja",
+        "ja",
+        "ja",
+      ]),
+      row(c("Oversættelse via JSON", "Translation via JSON"), ["nej", "ja", "ja", "ja", "ja"]),
+      row(c("Debug med F1", "Debug with F1"), ["ja", "ja", "ja", "ja", "ja"]),
     ],
   },
 ];
 
-export const featureCellLabel: Record<FeatureCell, string> = {
-  ja: "Ja",
-  nej: "Nej",
-  ukendt: "Ukendt",
-  delt: "Delt",
-  "efter-zip": "Efter zippen",
+export const featureCellLabel: Record<FeatureCell, Copy> = {
+  ja: c("Ja", "Yes"),
+  nej: c("Nej", "No"),
+  ukendt: c("Ukendt", "Unknown"),
+  delt: c("Delt", "Split"),
+  "efter-zip": c("Efter zippen", "After the zip"),
 };

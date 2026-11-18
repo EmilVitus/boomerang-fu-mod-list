@@ -1,4 +1,5 @@
 import { statuses, type StatusId } from "@/data/mods";
+import type { Locale } from "@/lib/locale-shared";
 
 export const statusTone: Record<StatusId, string> = {
   udgivet: "bg-primary text-primary-foreground",
@@ -9,6 +10,6 @@ export const statusTone: Record<StatusId, string> = {
   discord: "bg-secondary text-secondary-foreground",
 };
 
-export function statusLabel(id: StatusId) {
-  return statuses.find((status) => status.id === id)?.label ?? id;
+export function statusLabel(id: StatusId, locale: Locale) {
+  return statuses.find((status) => status.id === id)?.label[locale] ?? id;
 }
