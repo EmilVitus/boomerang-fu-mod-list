@@ -1,6 +1,6 @@
 import { c, type Copy } from "@/lib/copy";
 
-export const CHECKED_LABEL = c("18. november 2026", "18 November 2026");
+export const CHECKED_LABEL = c("20. november 2026", "20 November 2026");
 
 export const BEPINEX_RELEASE = c(
   "5.4.23.6, udgivet 24. oktober 2026",
@@ -63,6 +63,7 @@ export const lineage: LineageEntry[] = [
   },
   { id: "online-1", basedOn: null, relation: null },
   { id: "online-2", basedOn: "online-1", relation: c("Næste prototype", "Next prototype") },
+  { id: "online-github", basedOn: null, relation: null },
   { id: "eight", basedOn: null, relation: null },
   { id: "hats", basedOn: null, relation: null },
 ];
@@ -434,6 +435,78 @@ export const mods: ModEntry[] = [
         href: "https://www.reddit.com/r/BoomerangFu/comments/1urnyqs/boomerang_fu_online_multiplayer_mod_second/",
       },
     ],
+    rank: 5,
+  },
+  {
+    id: "online-github",
+    name: c("Boomerang Fu Online", "Boomerang Fu Online"),
+    authors: same("fraustiz"),
+    version: same("2.4.1"),
+    released: "2026-11-07",
+    releasedLabel: c("7. november 2026", "7 November 2026"),
+    updated: "2026-11-07",
+    updatedLabel: c("7. november 2026", "7 November 2026"),
+    status: "udgivet",
+    categories: ["online", "spillere"],
+    summary: c(
+      "Et færdigt GitHub-pakkeprojekt til BepInEx 5 med vært-/klient-spil over Steam eller direct IP, op til fire spillere og synkronisering af bots, powerups, obstacles og manchevent.",
+      "A complete GitHub package project for BepInEx 5 with host/client play over Steam or direct IP, up to four players, and synchronization of bots, powerups, obstacles, and round events.",
+    ),
+    features: [
+      c(
+        "Steam i Spacewar-tilstand som standard, invitations og familie-biblioteksstøtte.",
+        "Steam in Spacewar mode by default, with invitations and family-library support.",
+      ),
+      c(
+        "Direct IP over UDP-port 7777 samt automatisk UPnP-portåbning.",
+        "Direct IP over UDP port 7777 with automatic UPnP port opening.",
+      ),
+      c(
+        "Hosten styrer bevægelse, angreb, død, boomeranger og scores; klienter sender kommandoer og viser værtens tilstand.",
+        "The host controls movement, attacks, deaths, boomerangs, and scores; clients send commands and display the host's state.",
+      ),
+      c(
+        "Ankomst og genindtræden under kamp, synkroniserede menuvalg, bots, powerups, banekort og runder.",
+        "Late join and rejoin during matches, synchronized menus, bots, powerups, maps, and rounds.",
+      ),
+      c(
+        "Udgivelsen 2.4.1 har synkroniserede bevægelige forhindringer og host-effekter.",
+        "Release 2.4.1 adds synchronized moving obstacles and host effects.",
+      ),
+    ],
+    install: [
+      c(
+        "Hent BoomerangFuOnline-v2.4.1.zip fra GitHub Releases.",
+        "Download BoomerangFuOnline-v2.4.1.zip from GitHub Releases.",
+      ),
+      c(
+        "Pak hele indholdet ud i spilmappen ved siden af Boomerang Fu.exe.",
+        "Extract the complete contents into the game folder next to Boomerang Fu.exe.",
+      ),
+      c(
+        "Alle spillere skal bruge samme version af modden.",
+        "Every player must use the same version of the mod.",
+      ),
+    ],
+    compatibility: c(
+      "Udgivelsen v2.4.1 er fra 7. november 2026 og bruger BepInEx 5.4.22. Readme’en angiver ikke en spilversion eller test på 1.4.0, så kompatibiliteten er uafklaret.",
+      "Release v2.4.1 is from 7 November 2026 and uses BepInEx 5.4.22. The readme does not state a game version or testing on 1.4.0, so compatibility is unconfirmed.",
+    ),
+    conflicts: c(
+      "Koden patcher spilleren til Steam Spacewar-AppID 480 via en separate patcher. Kør ikke sammen med andre netværksmods eller en anden Boomerang Fu-online-patcher.",
+      "The code patches the game to Steam Spacewar AppID 480 through a separate patcher. Do not run it together with other network mods or another Boomerang Fu online patcher.",
+    ),
+    links: [
+      { label: same("GitHub"), href: "https://github.com/fraustiz/boomerang-fu-online" },
+      {
+        label: same("Download 2.4.1"),
+        href: "https://github.com/fraustiz/boomerang-fu-online/releases/download/v2.4.1/BoomerangFuOnline-v2.4.1.zip",
+      },
+      {
+        label: same("Releases"),
+        href: "https://github.com/fraustiz/boomerang-fu-online/releases",
+      },
+    ],
     rank: 4,
   },
   {
@@ -522,7 +595,7 @@ export const mods: ModEntry[] = [
         href: "https://github.com/alialyami90/BoomerangFooRemix/commit/a62566a6",
       },
     ],
-    rank: 5,
+    rank: 6,
   },
   {
     id: "gravity",
@@ -589,7 +662,7 @@ export const mods: ModEntry[] = [
     links: [
       { label: same("GitHub"), href: "https://github.com/acaburaz/boomerang-mods" },
     ],
-    rank: 6,
+    rank: 7,
   },
   {
     id: "slaughter",
@@ -656,7 +729,7 @@ export const mods: ModEntry[] = [
       "56 downloads af 0.4.1-zippen på GitHub",
       "56 downloads of the 0.4.1 zip on GitHub",
     ),
-    rank: 7,
+    rank: 8,
   },
   {
     id: "online-1",
@@ -719,7 +792,7 @@ export const mods: ModEntry[] = [
         href: "https://www.reddit.com/r/BoomerangFu/comments/1urnyqs/boomerang_fu_online_multiplayer_mod_second/",
       },
     ],
-    rank: 8,
+    rank: 9,
   },
   {
     id: "hats",
@@ -787,7 +860,75 @@ export const mods: ModEntry[] = [
       "14 downloads af hattepakken på GitHub",
       "14 downloads of the hat pack on GitHub",
     ),
-    rank: 9,
+    rank: 10,
+  },
+  {
+    id: "speedrun",
+    name: c("Speedrun Timer", "Speedrun Timer"),
+    authors: same("Vulcan5757"),
+    version: c("Ingen versionskode", "No version number"),
+    released: "2026-11-13",
+    releasedLabel: c("13. november 2026", "13 November 2026"),
+    updated: "2026-11-13",
+    updatedLabel: c("13. november 2026", "13 November 2026"),
+    status: "udgivet",
+    categories: ["indstillinger"],
+    summary: c(
+      "Et lille BepInEx-plugin til speedrunnere. Det starter og stopper automatisk spillets timer ud fra speedrun.com-reglerne og har hurtig reset.",
+      "A small BepInEx plugin for speedrunners. It starts and stops an in-game timer automatically according to speedrun.com rules and includes fast reset.",
+    ),
+    features: [
+      c(
+        "Timeren starter og stopper automatisk efter reglerne på speedrun.com-siden.",
+        "The timer starts and stops automatically according to the rules on the speedrun.com page.",
+      ),
+      c(
+        "Tryk + på controller for at gå tilbage til karaktervalget.",
+        "Press + on a controller to reset quickly to character selection.",
+      ),
+      c(
+        "I Any% resetter den til en Any%-sejerskærm fra den aktuelle session, så man kan trykke REMATCH.",
+        "In Any%, it resets to an Any% win screen from the current session so you can press REMATCH.",
+      ),
+      c(
+        "Timeren kan være få frames forkert; den er ikke et uafhængigt automatiseret speedrun-verifikationsværktøj.",
+        "The timer can be a few frames off; it is not an independent automated speedrun verification tool.",
+      ),
+    ],
+    install: [
+      c(
+        "Installér BepInEx, hvis det ikke allerede er i spillets mappe.",
+        "Install BepInEx if it is not already in the game folder.",
+      ),
+      c(
+        "Hent Speedrunning Mod.dll og læg den i BepInEx\\plugins.",
+        "Download Speedrunning Mod.dll and place it in BepInEx\\plugins.",
+      ),
+      c(
+        "Omdøb dll’en til .disabled for at deaktivere den.",
+        "Rename the dll to .disabled to disable it.",
+      ),
+    ],
+    compatibility: c(
+      "Repoet angiver ikke en spilversion eller en test på 1.4.0. Modden bruger game-state-timing og kan derfor kræve tilpasning, hvis spillet ændrer runder eller skærme.",
+      "The repo does not name a game version or a test on 1.4.0. The mod relies on game-state timing and may need adjustment if rounds or screens change.",
+    ),
+    conflicts: c(
+      "Ingen kendte konflikter er beskrevet. Brug kun én timer-mod ad gangen.",
+      "No known conflicts are documented. Use only one timer mod at a time.",
+    ),
+    links: [
+      { label: same("GitHub"), href: "https://github.com/Vulcan5757/B-Fu-Speedrunning-Mod" },
+      {
+        label: c("Hent DLL", "Download DLL"),
+        href: "https://raw.githubusercontent.com/Vulcan5757/B-Fu-Speedrunning-Mod/main/Speedrunning%20Mod.dll",
+      },
+      {
+        label: c("Speedrun.com", "Speedrun.com"),
+        href: "https://www.speedrun.com/boomerang_fu",
+      },
+    ],
+    rank: 11,
   },
   {
     id: "original",
@@ -850,7 +991,7 @@ export const mods: ModEntry[] = [
         href: "https://github.com/Jeffjewett27/BoomerangFoo",
       },
     ],
-    rank: 10,
+    rank: 12,
   },
 ];
 
