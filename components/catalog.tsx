@@ -150,9 +150,9 @@ export function Catalog() {
         </div>
         <dl className="grid grid-cols-2 gap-3 sm:grid-cols-4">
           <Stat label={m.statMods} value={String(copy.mods.length)} />
-          <Stat label={m.statZip} value="5" />
+          <Stat label={m.statZip} value="6" />
           <Stat label={m.statSource} value="3" />
-          <Stat label={m.statOnline} value="2" />
+          <Stat label={m.statOnline} value="3" />
         </dl>
       </header>
 
