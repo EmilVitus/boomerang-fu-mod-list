@@ -22,7 +22,7 @@ npm run build
 
 ## What the list covers
 
-Sources were checked on 21 November 2026. Each card shows when the mod was last updated publicly. The game was then on version 1.4.0 (3 November 2026). None of the mods has been confirmed on that version. BepInEx 5.4.23.6, which the 5.x line of mods uses, was released on 24 October 2026.
+Sources were checked on 21 November 2026. Each card shows when the mod was last updated publicly. The game is on version 1.4.1 (19 November 2026). 1.4.0 arrived on 3 November 2026. A table at the bottom lists the newest game version each mod's source says it was tried on. BepInEx 5.4.23.6, which the 5.x line of mods uses, was released on 24 October 2026.
 
 Data lives in `data/mods.ts`.
 
@@ -52,6 +52,6 @@ npm run build
 
 ## Hvad listen dækker
 
-Kilderne er tjekket 21. november 2026. Hvert kort viser, hvornår modden sidst blev opdateret offentligt. Spillet var da på version 1.4.0 (3. november 2026). Ingen af modsene er bekræftet på den version. BepInEx 5.4.23.6, som modsene i 5.x-linjen bruger, blev udgivet 24. oktober 2026.
+Kilderne er tjekket 21. november 2026. Hvert kort viser, hvornår modden sidst blev opdateret offentligt. Spillet er på version 1.4.1 (19. november 2026). 1.4.0 kom 3. november 2026. En tabel nederst viser den nyeste spilversion, som hver mods kilde selv siger, at den er prøvet på. BepInEx 5.4.23.6, som modsene i 5.x-linjen bruger, blev udgivet 24. oktober 2026.
 
 Data ligger i `data/mods.ts`.

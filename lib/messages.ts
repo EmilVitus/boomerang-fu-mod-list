@@ -27,6 +27,7 @@ export type Messages = {
   viewList: string;
   viewFeatures: string;
   viewPlayers: string;
+  viewVersions: string;
   sortRank: string;
   sortNewest: string;
   sortName: string;
@@ -64,6 +65,10 @@ export type Messages = {
   playersIntro: string;
   playersCaption: string;
   playerHeaders: [string, string, string, string, string];
+  versionsTitle: string;
+  versionsIntro: (version: string) => string;
+  versionsCaption: string;
+  versionHeaders: [string, string, string];
   chaosFamily: string;
   chaosFamilySummary: string;
   onlineFamily: string;
@@ -87,7 +92,7 @@ export const ui: Record<Locale, Messages> = {
     checked: (date) => `Sidst opdateret ${date}`,
     title: "Alle offentlige Boomerang Fu-mods til Windows",
     intro:
-      "Tolv mods og forks, som kan hentes eller læses uden at være med i en lukket gruppe. Stamtræet viser, hvilken der er bygget oven på hvilken. Spillet fik version 1.4.0 den 3. november 2026. Ingen af dem er bekræftet på den build.",
+      "Tolv mods og forks, som kan hentes eller læses uden at være med i en lukket gruppe. Stamtræet viser, hvilken der er bygget oven på hvilken. Nederst står, hvilken spilversion hver mod er bekræftet på.",
     statMods: "Mods i listen",
     statZip: "Med en zip",
     statSource: "Kun kilde eller Discord",
@@ -102,6 +107,7 @@ export const ui: Record<Locale, Messages> = {
     viewList: "Liste",
     viewFeatures: "Funktionstabel",
     viewPlayers: "Ekstra spillere",
+    viewVersions: "Spilversion",
     sortRank: "Mest brugbar",
     sortNewest: "Nyeste",
     sortName: "Navn",
@@ -123,7 +129,7 @@ export const ui: Record<Locale, Messages> = {
     installOneDll:
       "Kun én BoomerangFoo.dll kan være aktiv. Chaos Mod, stack-forken, Remix og Slaughter House erstatter hinanden. 8 Player Mod kan heller ikke køre sammen med dem.",
     installAfterUpdate:
-      "Efter 1.4.0 skal du regne med, at menuen kan crashe eller at modden slet ikke loader. Fjern dll’en for at komme tilbage til det rene spil.",
+      "Efter 1.4.1 skal du regne med, at menuen kan crashe eller at modden slet ikke loader. Fjern dll’en for at komme tilbage til det rene spil.",
     omittedTitle: "Ikke med i listen",
     footer: (date) =>
       `Kilder: GitHub-repos og releases for Jeffjewett27/BoomerangFoo, huseinnabil1997/BoomerangFoo-ChaosMod, Shyngyskhan-333/boomerang-fu-8-player-mod, alialyami90/BoomerangFooRemix, william-spongberg/BoomerangFooMod, exp111/BoomerangFuStuff, fraustiz/boomerang-fu-online og Vulcan5757/B-Fu-Speedrunning-Mod, plus opslag i r/BoomerangFu. Download-tal er GitHubs tæller på den nævnte fil, læst ${date}. Modsene er uofficielle og har ingen tilknytning til Cranky Watermelon.`,
@@ -150,6 +156,11 @@ export const ui: Record<Locale, Messages> = {
     playersCaption:
       "Hvor mange lokale mennesker, bots og netværksspillere hver mod lægger til.",
     playerHeaders: ["Mod", "Mennesker ved skærmen", "Bots", "Samlet loft", "Over nettet"],
+    versionsTitle: "Bekræftet spilversion",
+    versionsIntro: (version) =>
+      `Spillet er på ${version}. 1.4.0 kom 3. november 2026. Tabellen viser den nyeste spilversion, som kilden selv siger, at modden er prøvet på.`,
+    versionsCaption: "Nyeste spilversion, som hver mods kilde selv bekræfter.",
+    versionHeaders: ["Mod", "Nyeste bekræftede spilversion", "Hvad kilden siger"],
     chaosFamily: "Chaos-familien",
     chaosFamilySummary:
       "Discord-modden blev til Jeff Jewetts BepInEx-udgave, og fire projekter er forket derfra. De lægger alle BoomerangFoo.dll ind, så de erstatter hinanden. Kortet for Chaos Mod viser udgivelse 0.5.4. Slaughter House er forket fra 0.4.1, før de senere tilføjelser.",
@@ -174,7 +185,7 @@ export const ui: Record<Locale, Messages> = {
     checked: (date) => `Last updated ${date}`,
     title: "Every public Boomerang Fu mod for Windows",
     intro:
-      "Twelve mods and forks you can download or read without joining a closed group. The family tree shows which one is built on which. The game reached version 1.4.0 on 3 November 2026. None of them are confirmed on that build.",
+      "Twelve mods and forks you can download or read without joining a closed group. The family tree shows which one is built on which. The bottom of the page lists the game version each mod is confirmed on.",
     statMods: "Mods in the list",
     statZip: "With a zip",
     statSource: "Source or Discord only",
@@ -189,6 +200,7 @@ export const ui: Record<Locale, Messages> = {
     viewList: "List",
     viewFeatures: "Feature table",
     viewPlayers: "Extra players",
+    viewVersions: "Game version",
     sortRank: "Most useful",
     sortNewest: "Newest",
     sortName: "Name",
@@ -210,7 +222,7 @@ export const ui: Record<Locale, Messages> = {
     installOneDll:
       "Only one BoomerangFoo.dll can be active. Chaos Mod, the stack fork, Remix, and Slaughter House replace each other. 8 Player Mod cannot run alongside them either.",
     installAfterUpdate:
-      "After 1.4.0, expect the menu to crash or the mod not to load at all. Remove the dll to get back to the unmodified game.",
+      "After 1.4.1, expect the menu to crash or the mod not to load at all. Remove the dll to get back to the unmodified game.",
     omittedTitle: "Left out of the list",
     footer: (date) =>
       `Sources: GitHub repos and releases for Jeffjewett27/BoomerangFoo, huseinnabil1997/BoomerangFoo-ChaosMod, Shyngyskhan-333/boomerang-fu-8-player-mod, alialyami90/BoomerangFooRemix, william-spongberg/BoomerangFooMod, exp111/BoomerangFuStuff, fraustiz/boomerang-fu-online, and Vulcan5757/B-Fu-Speedrunning-Mod, plus posts on r/BoomerangFu. Download counts are GitHub's counter for the named file, read on ${date}. The mods are unofficial and are not affiliated with Cranky Watermelon.`,
@@ -236,6 +248,11 @@ export const ui: Record<Locale, Messages> = {
       "The game has six local humans. Coloured cells are what the mod adds. Chaos Mod and Remix fill the extra slots with bots. 8 Player Mod adds two human slots and leaves the bot cap alone. The stack fork has both in the code: eight controllers were committed on 9 September 2026, after the 0.5.6 zip, which already mentions a lobby for 12. Physical controllers 7 and 8 are not tested in 8 Player Mod. Bot matches are. Boomerang Fu Online is one player per computer and four at most over the network. The July prototype adds several local players on the same machine, but does not state how many.",
     playersCaption: "How many local humans, bots, and online players each mod adds.",
     playerHeaders: ["Mod", "Humans at the screen", "Bots", "Combined cap", "Over the network"],
+    versionsTitle: "Confirmed game version",
+    versionsIntro: (version) =>
+      `The game is on ${version}. 1.4.0 arrived on 3 November 2026. The table shows the newest game version that each mod's own source says it was tried on.`,
+    versionsCaption: "The newest game version each mod's source confirms.",
+    versionHeaders: ["Mod", "Newest confirmed game version", "What the source says"],
     chaosFamily: "The Chaos family",
     chaosFamilySummary:
       "The Discord mod became Jeff Jewett's BepInEx edition, and four projects are forked from that. They all install BoomerangFoo.dll, so they replace each other. The Chaos Mod card shows release 0.5.4. Slaughter House is forked from 0.4.1, before the later additions.",

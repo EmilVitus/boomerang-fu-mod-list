@@ -8,6 +8,7 @@ import {
   featureCellLabel,
   type FeatureCell,
 } from "@/data/chaos-features";
+import { currentGame, versionRows } from "@/data/game-versions";
 import { playerRows } from "@/data/player-counts";
 import { localize } from "@/lib/copy";
 import { useLocale, useUi } from "@/lib/locale";
@@ -170,5 +171,68 @@ export function FeatureTable({ onOpen }: { onOpen: (id: string) => void }) {
       </div>
     </section>
     </>
+  );
+}
+
+export function GameVersionTable({ onOpen }: { onOpen: (id: string) => void }) {
+  const { locale } = useLocale();
+  const m = useUi();
+  const copy = useMemo(() => localize(locale, { versionRows, currentGame }), [locale]);
+
+  return (
+    <section id="spilversion" className="mt-6 rounded-2xl border bg-card p-4 shadow-sm sm:p-6">
+      <h2 className="font-heading text-2xl font-medium">{m.versionsTitle}</h2>
+      <p className="mt-2 max-w-3xl text-sm leading-relaxed text-muted-foreground">
+        {m.versionsIntro(copy.currentGame)}
+      </p>
+      <div className="mt-4 overflow-auto rounded-xl border">
+        <table className="w-full min-w-[40rem] border-separate border-spacing-0 text-sm">
+          <caption className="sr-only">{m.versionsCaption}</caption>
+          <thead>
+            <tr>
+              {m.versionHeaders.map((label, index) => (
+                <th
+                  key={label}
+                  scope="col"
+                  className={
+                    "sticky top-0 bg-card px-3 py-3 text-left font-medium " +
+                    (index === 0 ? "left-0 z-30" : "z-20")
+                  }
+                >
+                  {label}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {copy.versionRows.map((row) => (
+              <tr key={row.id}>
+                <th
+                  scope="row"
+                  className="sticky left-0 z-10 border-t bg-card px-3 py-2 text-left font-normal"
+                >
+                  <button
+                    type="button"
+                    onClick={() => onOpen(row.id)}
+                    className="rounded-md text-left hover:text-primary focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none"
+                  >
+                    <span className="block font-medium">{row.name}</span>
+                    <span className="block text-xs text-muted-foreground">{row.detail}</span>
+                  </button>
+                </th>
+                <td
+                  className={
+                    "border-t px-3 py-2 " + (row.known ? "font-medium" : "text-muted-foreground italic")
+                  }
+                >
+                  {row.confirmed}
+                </td>
+                <td className="border-t px-3 py-2 text-muted-foreground">{row.note}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
   );
 }

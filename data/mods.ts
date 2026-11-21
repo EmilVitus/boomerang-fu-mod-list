@@ -186,8 +186,8 @@ export const mods: ModEntry[] = [
       ),
     ],
     compatibility: c(
-      "0.5.0 blev lavet til spilversion 1.3.5 (april 2025). 0.5.4 er fra august 2025, altså efter hotfix 1.3.6 og før 1.3.7 (16. oktober 2025). Ingen har bekræftet den på 1.3.7 eller på 1.4.0 fra 3. november 2026.",
-      "0.5.0 was made for game version 1.3.5 (April 2025). 0.5.4 is from August 2025, after hotfix 1.3.6 and before 1.3.7 (16 October 2025). Nobody has confirmed it on 1.3.7 or on 1.4.0 from 3 November 2026.",
+      "0.5.0 blev lavet til spilversion 1.3.5 (april 2025). 0.5.4 er fra august 2025, altså efter hotfix 1.3.6 og før 1.3.7 (16. oktober 2025). Ingen har bekræftet den på 1.3.7, 1.4.0 eller 1.4.1.",
+      "0.5.0 was made for game version 1.3.5 (April 2025). 0.5.4 is from August 2025, after hotfix 1.3.6 and before 1.3.7 (16 October 2025). Nobody has confirmed it on 1.3.7, 1.4.0, or 1.4.1.",
     ),
     conflicts: c(
       "Zip-filen lægger sin egen BepInEx ind. Kun én BoomerangFoo.dll kan ligge i plugin-mappen. Den kan ikke køre samtidig med stack-forken, Remix, Slaughter House eller 8 Player Mod, fordi de retter de samme metoder.",
@@ -274,8 +274,8 @@ export const mods: ModEntry[] = [
       ),
     ],
     compatibility: c(
-      "Udgivet 15. august 2026, efter spillets 1.3.7 og før 1.4.0. Readme’en nævner ikke en præcis spilversion. Regn med at 1.4.0 fra 3. november 2026 kan have ødelagt den, indtil nogen tester den.",
-      "Released 15 August 2026, after the game's 1.3.7 and before 1.4.0. The readme does not name an exact game version. Assume 1.4.0 from 3 November 2026 may have broken it until someone tests it.",
+      "Udgivet 15. august 2026, efter spillets 1.3.7 og før 1.4.0. Readme’en nævner ikke en præcis spilversion. Regn med at 1.4.0 fra 3. november 2026 og 1.4.1 fra 19. november kan have ødelagt den, indtil nogen tester den.",
+      "Released 15 August 2026, after the game's 1.3.7 and before 1.4.0. The readme does not name an exact game version. Assume 1.4.0 from 3 November 2026 and 1.4.1 from 19 November may have broken it until someone tests it.",
     ),
     conflicts: c(
       "Erstatter den samme BoomerangFoo.dll som den originale Chaos Mod. Kør den ikke sammen med Remix, Slaughter House eller 8 Player Mod.",
@@ -349,8 +349,8 @@ export const mods: ModEntry[] = [
       ),
     ],
     compatibility: c(
-      "Kun undersøgt på spilversion 1.3.6 (Unity 2022.3.54f1). 1.3.7 og især 1.4.0 er nyere, så den er sandsynligvis i stykker på den aktuelle Steam-build, indtil den bliver opdateret. Fysiske controllere 7 og 8 er ikke testet. Bot-kampe er.",
-      "Only checked on game version 1.3.6 (Unity 2022.3.54f1). 1.3.7 and especially 1.4.0 are newer, so it is probably broken on the current Steam build until it is updated. Physical controllers 7 and 8 are not tested. Bot matches are.",
+      "Kun undersøgt på spilversion 1.3.6 (Unity 2022.3.54f1). 1.3.7, 1.4.0 og den aktuelle 1.4.1 er nyere, så den er sandsynligvis i stykker på den aktuelle Steam-build, indtil den bliver opdateret. Fysiske controllere 7 og 8 er ikke testet. Bot-kampe er.",
+      "Only checked on game version 1.3.6 (Unity 2022.3.54f1). 1.3.7, 1.4.0, and the current 1.4.1 are newer, so it is probably broken on the current Steam build until it is updated. Physical controllers 7 and 8 are not tested. Bot matches are.",
     ),
     conflicts: c(
       "Kan ikke køre samtidig med Chaos Mod eller dens forks. De patcher de samme metoder.",
@@ -424,8 +424,8 @@ export const mods: ModEntry[] = [
       ),
     ],
     compatibility: c(
-      "Skrevet til Steam-versionen i juli 2026, altså efter 1.3.7 og før 1.4.0. Den er en prototype, og 1.4.0 fra 3. november 2026 kan have ændret de klasser, den hooker.",
-      "Written for the Steam version in July 2026, after 1.3.7 and before 1.4.0. It is a prototype, and 1.4.0 from 3 November 2026 may have changed the classes it hooks.",
+      "Skrevet til Steam-versionen i juli 2026, altså efter 1.3.7 og før 1.4.0. Den er en prototype, og 1.4.0 fra 3. november 2026 og 1.4.1 fra 19. november kan have ændret de klasser, den hooker.",
+      "Written for the Steam version in July 2026, after 1.3.7 and before 1.4.0. It is a prototype, and 1.4.0 from 3 November 2026 and 1.4.1 from 19 November may have changed the classes it hooks.",
     ),
     conflicts: c(
       "Ikke testet sammen med Chaos Mod eller 8 Player Mod. Læg den ikke i samme plugins-mappe som den første prototype eller som Boomerang Fu Online.",
@@ -499,8 +499,8 @@ export const mods: ModEntry[] = [
       ),
     ],
     compatibility: c(
-      "Udgivet 7. november 2026, fire dage efter spillets 1.4.0. Readme’en nævner ikke en spilversion, så den er ikke bekræftet på den build.",
-      "Released 7 November 2026, four days after the game's 1.4.0. The readme does not name a game version, so it is not confirmed on that build.",
+      "Udgivet 7. november 2026, fire dage efter spillets 1.4.0. Readme’en nævner ikke en spilversion, så den er ikke bekræftet på 1.4.0 eller på 1.4.1.",
+      "Released 7 November 2026, four days after the game's 1.4.0. The readme does not name a game version, so it is not confirmed on 1.4.0 or on 1.4.1.",
     ),
     conflicts: c(
       "Patcheren sætter spillet til Steam-appen Spacewar, AppID 480. Kør den ikke sammen med Reddit-prototyperne. Den lægger ikke BoomerangFoo.dll ind, og den er ikke testet sammen med Chaos-familien.",
@@ -591,8 +591,8 @@ export const mods: ModEntry[] = [
       ),
     ],
     compatibility: c(
-      "Sidste commit på master er 13. november 2026. De første egne ændringer er fra 29.–30. oktober 2026, oven på Chaos Mod efter README-opdateringen 19. december 2025. Samme forbehold som Chaos Mod over for 1.4.0, og den er ikke prøvet af som færdig pakke.",
-      "The latest commit on master is 13 November 2026. The first original changes are from 29–30 October 2026, on top of Chaos Mod after the README update of 19 December 2025. The same caveat as Chaos Mod applies to 1.4.0, and it has not been tried as a finished package.",
+      "Sidste commit på master er 13. november 2026. De første egne ændringer er fra 29.–30. oktober 2026, oven på Chaos Mod efter README-opdateringen 19. december 2025. Samme forbehold som Chaos Mod over for 1.4.0 og 1.4.1, og den er ikke prøvet af som færdig pakke.",
+      "The latest commit on master is 13 November 2026. The first original changes are from 29–30 October 2026, on top of Chaos Mod after the README update of 19 December 2025. The same caveat as Chaos Mod applies to 1.4.0 and 1.4.1, and it has not been tried as a finished package.",
     ),
     conflicts: c(
       "Den lægger sin egen BoomerangFoo.dll ind og erstatter derfor Chaos Mod, stack-forken og Slaughter House.",
@@ -666,8 +666,8 @@ export const mods: ModEntry[] = [
       ),
     ],
     compatibility: c(
-      "Ét commit, 13. november 2026. I kilden står NoBoomerangs som true fra start, så tjek modifieren Uden boomeranger, hvis kampen begynder uden boomeranger. Samme forbehold over for spilversion 1.4.0 som de andre Chaos-forks. Den er ikke prøvet af som færdig pakke.",
-      "One commit, 13 November 2026. In the source NoBoomerangs starts as true, so check the No boomerangs modifier if a match begins without boomerangs. The same caveat about game version 1.4.0 as the other Chaos forks. It has not been tried as a finished package.",
+      "Ét commit, 13. november 2026. I kilden står NoBoomerangs som true fra start, så tjek modifieren Uden boomeranger, hvis kampen begynder uden boomeranger. Samme forbehold over for spilversion 1.4.0 og 1.4.1 som de andre Chaos-forks. Den er ikke prøvet af som færdig pakke.",
+      "One commit, 13 November 2026. In the source NoBoomerangs starts as true, so check the No boomerangs modifier if a match begins without boomerangs. The same caveat about game versions 1.4.0 and 1.4.1 as the other Chaos forks. It has not been tried as a finished package.",
     ),
     conflicts: c(
       "Den lægger sin egen BoomerangFoo.dll ind og erstatter Chaos Mod, stack-forken, Remix, Slaughter House og 8 Player Mod.",
@@ -725,8 +725,8 @@ export const mods: ModEntry[] = [
       ),
     ],
     compatibility: c(
-      "Udgivet 2. marts 2025, før spillets 1.3.5 (28. marts 2025). Den er ældre end både 1.3.7 og 1.4.0. Spillet har desuden selv fået modifieren Lives Per Map i 1.4.0, som dækker en del af det samme ønske i Free For All.",
-      "Released 2 March 2025, before the game's 1.3.5 (28 March 2025). It is older than both 1.3.7 and 1.4.0. The game itself also gained the Lives Per Map modifier in 1.4.0, which covers part of the same wish in Free For All.",
+      "Udgivet 2. marts 2025, før spillets 1.3.5 (28. marts 2025). Den er ældre end både 1.3.7, 1.4.0 og 1.4.1. Spillet har desuden selv fået modifieren Lives Per Map i 1.4.0, som dækker en del af det samme ønske i Free For All.",
+      "Released 2 March 2025, before the game's 1.3.5 (28 March 2025). It is older than 1.3.7, 1.4.0, and 1.4.1. The game itself also gained the Lives Per Map modifier in 1.4.0, which covers part of the same wish in Free For All.",
     ),
     conflicts: c(
       "Erstatter BoomerangFoo.dll. Brug den ikke oven i en nyere Chaos-udgivelse.",
@@ -789,8 +789,8 @@ export const mods: ModEntry[] = [
       ),
     ],
     compatibility: c(
-      "Afløst af prototypen fra 9. juli 2026. Samme usikkerhed over for spilversion 1.4.0.",
-      "Superseded by the prototype from 9 July 2026. The same uncertainty about game version 1.4.0.",
+      "Afløst af prototypen fra 9. juli 2026. Samme usikkerhed over for spilversion 1.4.0 og 1.4.1.",
+      "Superseded by the prototype from 9 July 2026. The same uncertainty about game versions 1.4.0 and 1.4.1.",
     ),
     conflicts: c(
       "Læg ikke begge online-prototyper eller Boomerang Fu Online i plugins-mappen på én gang.",
@@ -856,8 +856,8 @@ export const mods: ModEntry[] = [
       ),
     ],
     compatibility: c(
-      "Skrevet da spillet kørte på Unity 2019.2. 8 Player Mod beskriver 1.3.6 som Unity 2022.3.54f1, og 1.4.0 er endnu nyere. Hatte fra 2022 loader næsten med sikkerhed ikke uden en omskrivning.",
-      "Written when the game ran on Unity 2019.2. 8 Player Mod describes 1.3.6 as Unity 2022.3.54f1, and 1.4.0 is newer still. Hats from 2022 almost certainly will not load without a rewrite.",
+      "Skrevet da spillet kørte på Unity 2019.2. 8 Player Mod beskriver 1.3.6 som Unity 2022.3.54f1, og 1.4.1 er endnu nyere. Hatte fra 2022 loader næsten med sikkerhed ikke uden en omskrivning.",
+      "Written when the game ran on Unity 2019.2. 8 Player Mod describes 1.3.6 as Unity 2022.3.54f1, and 1.4.1 is newer still. Hats from 2022 almost certainly will not load without a rewrite.",
     ),
     conflicts: c(
       "Et selvstændigt plugin. Det deler ikke dll-navn med Chaos Mod, men en gammel BepInEx fra 2022 kan ikke blandes med de nye pakker.",
@@ -924,8 +924,8 @@ export const mods: ModEntry[] = [
       ),
     ],
     compatibility: c(
-      "Repoet angiver ikke en spilversion eller en test på 1.4.0. Timeren læser spillets tilstand, så den kan kræve tilpasning, hvis runder eller skærme ændrer sig.",
-      "The repo does not name a game version or a test on 1.4.0. The timer reads the game's state, so it may need adjustment if rounds or screens change.",
+      "Repoet angiver ikke en spilversion eller en test på 1.4.0 eller 1.4.1. Timeren læser spillets tilstand, så den kan kræve tilpasning, hvis runder eller skærme ændrer sig.",
+      "The repo does not name a game version or a test on 1.4.0 or 1.4.1. The timer reads the game's state, so it may need adjustment if rounds or screens change.",
     ),
     conflicts: c(
       "Et selvstændigt plugin. Filen hedder ikke BoomerangFoo.dll, så den erstatter ikke Chaos-familien.",
@@ -988,8 +988,8 @@ export const mods: ModEntry[] = [
       ),
     ],
     compatibility: c(
-      "Den omtalte opdatering ramte 1.3.5. Den er ikke vedligeholdt offentligt siden, og 1.4.0 ligger flere versioner senere.",
-      "The update that was mentioned targeted 1.3.5. It has not been maintained in public since, and 1.4.0 is several versions later.",
+      "Den omtalte opdatering ramte 1.3.5. Den er ikke vedligeholdt offentligt siden, og 1.4.1 ligger flere versioner senere.",
+      "The update that was mentioned targeted 1.3.5. It has not been maintained in public since, and 1.4.1 is several versions later.",
     ),
     conflicts: c(
       "Forløberen til BoomerangFoo. Installér den ikke oven i en BepInEx-udgave af samme mod.",
