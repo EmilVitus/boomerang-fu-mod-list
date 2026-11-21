@@ -1,6 +1,6 @@
 "use client";
 
-import { Fragment, useMemo } from "react";
+import { Fragment, useMemo, useState } from "react";
 
 import {
   chaosColumns,
@@ -8,7 +8,9 @@ import {
   featureCellLabel,
   type FeatureCell,
 } from "@/data/chaos-features";
+import { currentGame, versionRows } from "@/data/game-versions";
 import { playerRows } from "@/data/player-counts";
+import { Button } from "@/components/ui/button";
 import { localize } from "@/lib/copy";
 import { useLocale, useUi } from "@/lib/locale";
 
@@ -21,6 +23,12 @@ const cellClass: Record<FeatureCell, string> = {
 };
 
 const raisedClass = "bg-primary/15 font-medium text-primary";
+
+type VersionSort = "standard" | "oldest" | "newest";
+
+function gameVersionRank(version: string) {
+  return version.split(".").reduce((total, part) => total * 100 + Number(part), 0);
+}
 
 export function FeatureTable({ onOpen }: { onOpen: (id: string) => void }) {
   const { locale } = useLocale();
@@ -170,5 +178,110 @@ export function FeatureTable({ onOpen }: { onOpen: (id: string) => void }) {
       </div>
     </section>
     </>
+  );
+}
+
+export function GameVersionTable({ onOpen }: { onOpen: (id: string) => void }) {
+  const { locale } = useLocale();
+  const m = useUi();
+  const [versionSort, setVersionSort] = useState<VersionSort>("standard");
+  const copy = useMemo(() => localize(locale, { versionRows, currentGame }), [locale]);
+  const rows = useMemo(() => {
+    if (versionSort === "standard") return copy.versionRows;
+    const direction = versionSort === "oldest" ? 1 : -1;
+    return copy.versionRows
+      .map((row, index) => ({ row, index }))
+      .sort(
+        (a, b) =>
+          direction * (gameVersionRank(a.row.atCommit) - gameVersionRank(b.row.atCommit)) ||
+          a.index - b.index,
+      )
+      .map((item) => item.row);
+  }, [copy.versionRows, versionSort]);
+
+  return (
+    <section id="spilversion" className="mt-12 rounded-2xl border bg-card p-4 shadow-sm sm:p-6">
+      <h2 className="font-heading text-2xl font-medium">{m.versionsTitle}</h2>
+      <p className="mt-2 max-w-3xl text-sm leading-relaxed text-muted-foreground">
+        {m.versionsIntro(copy.currentGame)}
+      </p>
+      <div className="mt-4 flex flex-col gap-2 sm:flex-row sm:items-start">
+        <p id="spilversion-sortering" className="w-24 shrink-0 pt-1.5 text-sm font-medium text-muted-foreground">
+          {m.filterSort}
+        </p>
+        <div className="flex flex-wrap gap-2" role="group" aria-labelledby="spilversion-sortering">
+          {(
+            [
+              ["standard", m.versionSortStandard],
+              ["oldest", m.versionSortOldest],
+              ["newest", m.versionSortNewest],
+            ] as const
+          ).map(([id, label]) => (
+            <Button
+              key={id}
+              type="button"
+              size="sm"
+              variant={versionSort === id ? "default" : "outline"}
+              aria-pressed={versionSort === id}
+              onClick={() => setVersionSort(id)}
+            >
+              {label}
+            </Button>
+          ))}
+        </div>
+      </div>
+      <div className="mt-4 overflow-auto rounded-xl border">
+        <table className="w-full min-w-[56rem] border-separate border-spacing-0 text-sm">
+          <caption className="sr-only">{m.versionsCaption}</caption>
+          <thead>
+            <tr>
+              {m.versionHeaders.map((label, index) => (
+                <th
+                  key={label}
+                  scope="col"
+                  className={
+                    "sticky top-0 bg-card px-3 py-3 text-left font-medium " +
+                    (index === 0 ? "left-0 z-30" : "z-20")
+                  }
+                >
+                  {label}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((row) => (
+              <tr key={row.id}>
+                <th
+                  scope="row"
+                  className="sticky left-0 z-10 border-t bg-card px-3 py-2 text-left font-normal"
+                >
+                  <button
+                    type="button"
+                    onClick={() => onOpen(row.id)}
+                    className="rounded-md text-left hover:text-primary focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none"
+                  >
+                    <span className="block font-medium">{row.name}</span>
+                    <span className="block text-xs text-muted-foreground">{row.detail}</span>
+                  </button>
+                </th>
+                <td
+                  className={
+                    "border-t px-3 py-2 " + (row.known ? "font-medium" : "text-muted-foreground italic")
+                  }
+                >
+                  {row.confirmed}
+                </td>
+                <td className="border-t px-3 py-2">
+                  <span className="block font-medium">{row.atCommit}</span>
+                  <span className="block text-xs text-muted-foreground">{row.atCommitWhen}</span>
+                </td>
+                <td className="border-t px-3 py-2 text-muted-foreground">{row.note}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
   );
 }

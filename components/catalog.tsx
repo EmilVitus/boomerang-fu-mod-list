@@ -3,7 +3,7 @@
 import { useMemo, useState, type ReactNode } from "react";
 import { Search, ExternalLink } from "lucide-react";
 
-import { FeatureTable } from "@/components/feature-table";
+import { FeatureTable, GameVersionTable } from "@/components/feature-table";
 import { LanguageSwitch } from "@/components/language-switch";
 import { LineageTree } from "@/components/lineage-tree";
 import { statusLabel, statusTone } from "@/components/status-tone";
@@ -230,6 +230,17 @@ export function Catalog() {
                   >
                     {m.viewPlayers}
                   </FilterChip>
+                  <FilterChip
+                    pressed={false}
+                    onClick={() =>
+                      document.getElementById("spilversion")?.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start",
+                      })
+                    }
+                  >
+                    {m.viewVersions}
+                  </FilterChip>
                 </FilterRow>
                 {view === "liste" ? (
                   <FilterRow label={m.filterSort}>
@@ -310,6 +321,8 @@ export function Catalog() {
         ) : null}
 
         <FeatureTable onOpen={setOpenId} />
+
+        <GameVersionTable onOpen={setOpenId} />
 
         <section className="mt-12 grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
           <div className="rounded-2xl border bg-card p-5 sm:p-6">
