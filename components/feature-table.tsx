@@ -1,6 +1,6 @@
 "use client";
 
-import { Fragment, useMemo } from "react";
+import { Fragment, useMemo, useState } from "react";
 
 import {
   chaosColumns,
@@ -10,6 +10,7 @@ import {
 } from "@/data/chaos-features";
 import { currentGame, versionRows } from "@/data/game-versions";
 import { playerRows } from "@/data/player-counts";
+import { Button } from "@/components/ui/button";
 import { localize } from "@/lib/copy";
 import { useLocale, useUi } from "@/lib/locale";
 
@@ -22,6 +23,12 @@ const cellClass: Record<FeatureCell, string> = {
 };
 
 const raisedClass = "bg-primary/15 font-medium text-primary";
+
+type VersionSort = "standard" | "oldest" | "newest";
+
+function gameVersionRank(version: string) {
+  return version.split(".").reduce((total, part) => total * 100 + Number(part), 0);
+}
 
 export function FeatureTable({ onOpen }: { onOpen: (id: string) => void }) {
   const { locale } = useLocale();
@@ -177,7 +184,20 @@ export function FeatureTable({ onOpen }: { onOpen: (id: string) => void }) {
 export function GameVersionTable({ onOpen }: { onOpen: (id: string) => void }) {
   const { locale } = useLocale();
   const m = useUi();
+  const [versionSort, setVersionSort] = useState<VersionSort>("standard");
   const copy = useMemo(() => localize(locale, { versionRows, currentGame }), [locale]);
+  const rows = useMemo(() => {
+    if (versionSort === "standard") return copy.versionRows;
+    const direction = versionSort === "oldest" ? 1 : -1;
+    return copy.versionRows
+      .map((row, index) => ({ row, index }))
+      .sort(
+        (a, b) =>
+          direction * (gameVersionRank(a.row.atCommit) - gameVersionRank(b.row.atCommit)) ||
+          a.index - b.index,
+      )
+      .map((item) => item.row);
+  }, [copy.versionRows, versionSort]);
 
   return (
     <section id="spilversion" className="mt-12 rounded-2xl border bg-card p-4 shadow-sm sm:p-6">
@@ -185,6 +205,31 @@ export function GameVersionTable({ onOpen }: { onOpen: (id: string) => void }) {
       <p className="mt-2 max-w-3xl text-sm leading-relaxed text-muted-foreground">
         {m.versionsIntro(copy.currentGame)}
       </p>
+      <div className="mt-4 flex flex-col gap-2 sm:flex-row sm:items-start">
+        <p id="spilversion-sortering" className="w-24 shrink-0 pt-1.5 text-sm font-medium text-muted-foreground">
+          {m.filterSort}
+        </p>
+        <div className="flex flex-wrap gap-2" role="group" aria-labelledby="spilversion-sortering">
+          {(
+            [
+              ["standard", m.versionSortStandard],
+              ["oldest", m.versionSortOldest],
+              ["newest", m.versionSortNewest],
+            ] as const
+          ).map(([id, label]) => (
+            <Button
+              key={id}
+              type="button"
+              size="sm"
+              variant={versionSort === id ? "default" : "outline"}
+              aria-pressed={versionSort === id}
+              onClick={() => setVersionSort(id)}
+            >
+              {label}
+            </Button>
+          ))}
+        </div>
+      </div>
       <div className="mt-4 overflow-auto rounded-xl border">
         <table className="w-full min-w-[56rem] border-separate border-spacing-0 text-sm">
           <caption className="sr-only">{m.versionsCaption}</caption>
@@ -205,7 +250,7 @@ export function GameVersionTable({ onOpen }: { onOpen: (id: string) => void }) {
             </tr>
           </thead>
           <tbody>
-            {copy.versionRows.map((row) => (
+            {rows.map((row) => (
               <tr key={row.id}>
                 <th
                   scope="row"

@@ -68,6 +68,9 @@ export type Messages = {
   versionsTitle: string;
   versionsIntro: (version: string) => string;
   versionsCaption: string;
+  versionSortStandard: string;
+  versionSortOldest: string;
+  versionSortNewest: string;
   versionHeaders: [string, string, string, string];
   chaosFamily: string;
   chaosFamilySummary: string;
@@ -161,6 +164,9 @@ export const ui: Record<Locale, Messages> = {
       `Spillet er på ${version}. 1.4.0 kom 3. november 2026. Første versionskolonne er den nyeste spilversion, som kilden selv siger, at modden er prøvet på. Den næste er den version, Steam var på, da seneste commit eller indlæg blev lagt op.`,
     versionsCaption:
       "Bekræftet spilversion, og hvilken version Steam var på ved seneste opdatering.",
+    versionSortStandard: "Standard",
+    versionSortOldest: "Ældste spilversion",
+    versionSortNewest: "Nyeste spilversion",
     versionHeaders: [
       "Mod",
       "Nyeste bekræftede spilversion",
@@ -258,6 +264,9 @@ export const ui: Record<Locale, Messages> = {
     versionsIntro: (version) =>
       `The game is on ${version}. 1.4.0 arrived on 3 November 2026. The first version column is the newest game version that each mod's own source says it was tried on. The next is the version Steam was on when the latest commit or post went up.`,
     versionsCaption: "Confirmed game version, and which version Steam was on at the latest update.",
+    versionSortStandard: "Standard",
+    versionSortOldest: "Oldest game version",
+    versionSortNewest: "Newest game version",
     versionHeaders: [
       "Mod",
       "Newest confirmed game version",
