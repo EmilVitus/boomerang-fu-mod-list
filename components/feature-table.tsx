@@ -180,13 +180,13 @@ export function GameVersionTable({ onOpen }: { onOpen: (id: string) => void }) {
   const copy = useMemo(() => localize(locale, { versionRows, currentGame }), [locale]);
 
   return (
-    <section id="spilversion" className="mt-6 rounded-2xl border bg-card p-4 shadow-sm sm:p-6">
+    <section id="spilversion" className="mt-12 rounded-2xl border bg-card p-4 shadow-sm sm:p-6">
       <h2 className="font-heading text-2xl font-medium">{m.versionsTitle}</h2>
       <p className="mt-2 max-w-3xl text-sm leading-relaxed text-muted-foreground">
         {m.versionsIntro(copy.currentGame)}
       </p>
       <div className="mt-4 overflow-auto rounded-xl border">
-        <table className="w-full min-w-[40rem] border-separate border-spacing-0 text-sm">
+        <table className="w-full min-w-[56rem] border-separate border-spacing-0 text-sm">
           <caption className="sr-only">{m.versionsCaption}</caption>
           <thead>
             <tr>
@@ -226,6 +226,10 @@ export function GameVersionTable({ onOpen }: { onOpen: (id: string) => void }) {
                   }
                 >
                   {row.confirmed}
+                </td>
+                <td className="border-t px-3 py-2">
+                  <span className="block font-medium">{row.atCommit}</span>
+                  <span className="block text-xs text-muted-foreground">{row.atCommitWhen}</span>
                 </td>
                 <td className="border-t px-3 py-2 text-muted-foreground">{row.note}</td>
               </tr>

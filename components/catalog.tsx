@@ -322,6 +322,8 @@ export function Catalog() {
 
         <FeatureTable onOpen={setOpenId} />
 
+        <GameVersionTable onOpen={setOpenId} />
+
         <section className="mt-12 grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
           <div className="rounded-2xl border bg-card p-5 sm:p-6">
             <h2 className="font-heading text-2xl font-medium">{m.installTitle}</h2>
@@ -353,8 +355,6 @@ export function Catalog() {
             </ul>
           </div>
         </section>
-
-        <GameVersionTable onOpen={setOpenId} />
 
         <footer className="mt-10 text-sm leading-relaxed text-muted-foreground">
           <Separator className="mb-4" />

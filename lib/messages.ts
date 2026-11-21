@@ -68,7 +68,7 @@ export type Messages = {
   versionsTitle: string;
   versionsIntro: (version: string) => string;
   versionsCaption: string;
-  versionHeaders: [string, string, string];
+  versionHeaders: [string, string, string, string];
   chaosFamily: string;
   chaosFamilySummary: string;
   onlineFamily: string;
@@ -158,9 +158,15 @@ export const ui: Record<Locale, Messages> = {
     playerHeaders: ["Mod", "Mennesker ved skærmen", "Bots", "Samlet loft", "Over nettet"],
     versionsTitle: "Bekræftet spilversion",
     versionsIntro: (version) =>
-      `Spillet er på ${version}. 1.4.0 kom 3. november 2026. Tabellen viser den nyeste spilversion, som kilden selv siger, at modden er prøvet på.`,
-    versionsCaption: "Nyeste spilversion, som hver mods kilde selv bekræfter.",
-    versionHeaders: ["Mod", "Nyeste bekræftede spilversion", "Hvad kilden siger"],
+      `Spillet er på ${version}. 1.4.0 kom 3. november 2026. Første versionskolonne er den nyeste spilversion, som kilden selv siger, at modden er prøvet på. Den næste er den version, Steam var på, da seneste commit eller indlæg blev lagt op.`,
+    versionsCaption:
+      "Bekræftet spilversion, og hvilken version Steam var på ved seneste opdatering.",
+    versionHeaders: [
+      "Mod",
+      "Nyeste bekræftede spilversion",
+      "Spillet var på",
+      "Hvad kilden siger",
+    ],
     chaosFamily: "Chaos-familien",
     chaosFamilySummary:
       "Discord-modden blev til Jeff Jewetts BepInEx-udgave, og fire projekter er forket derfra. De lægger alle BoomerangFoo.dll ind, så de erstatter hinanden. Kortet for Chaos Mod viser udgivelse 0.5.4. Slaughter House er forket fra 0.4.1, før de senere tilføjelser.",
@@ -250,9 +256,14 @@ export const ui: Record<Locale, Messages> = {
     playerHeaders: ["Mod", "Humans at the screen", "Bots", "Combined cap", "Over the network"],
     versionsTitle: "Confirmed game version",
     versionsIntro: (version) =>
-      `The game is on ${version}. 1.4.0 arrived on 3 November 2026. The table shows the newest game version that each mod's own source says it was tried on.`,
-    versionsCaption: "The newest game version each mod's source confirms.",
-    versionHeaders: ["Mod", "Newest confirmed game version", "What the source says"],
+      `The game is on ${version}. 1.4.0 arrived on 3 November 2026. The first version column is the newest game version that each mod's own source says it was tried on. The next is the version Steam was on when the latest commit or post went up.`,
+    versionsCaption: "Confirmed game version, and which version Steam was on at the latest update.",
+    versionHeaders: [
+      "Mod",
+      "Newest confirmed game version",
+      "Game was on",
+      "What the source says",
+    ],
     chaosFamily: "The Chaos family",
     chaosFamilySummary:
       "The Discord mod became Jeff Jewett's BepInEx edition, and four projects are forked from that. They all install BoomerangFoo.dll, so they replace each other. The Chaos Mod card shows release 0.5.4. Slaughter House is forked from 0.4.1, before the later additions.",

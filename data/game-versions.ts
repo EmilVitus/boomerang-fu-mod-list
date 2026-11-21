@@ -10,6 +10,8 @@ export type VersionRow = {
   name: Copy;
   detail: Copy;
   confirmed: Copy;
+  atCommit: Copy;
+  atCommitWhen: Copy;
   note: Copy;
   known: boolean;
 };
@@ -23,9 +25,11 @@ export const versionRows: VersionRow[] = [
     name: same("Chaos Mod"),
     detail: same("0.5.4"),
     confirmed: same("1.3.5"),
+    atCommit: same("1.3.7"),
+    atCommitWhen: c("19. december 2025", "19 December 2025"),
     note: c(
-      "0.5.0 er lavet til 1.3.5. 0.5.4 nævner ikke en nyere test.",
-      "0.5.0 was made for 1.3.5. 0.5.4 does not name a later test.",
+      "0.5.0 er lavet til 1.3.5. 0.5.4 nævner ikke en nyere test. Committen 19. december 2025 opdaterer kun README.",
+      "0.5.0 was made for 1.3.5. 0.5.4 does not name a later test. The commit of 19 December 2025 only updates the README.",
     ),
     known: true,
   },
@@ -34,6 +38,8 @@ export const versionRows: VersionRow[] = [
     name: same("Stack-fork"),
     detail: same("0.5.6"),
     confirmed: unknown,
+    atCommit: same("1.3.7"),
+    atCommitWhen: c("9. september 2026", "9 September 2026"),
     note: c(
       "Readme’en nævner ingen spilversion. Zippen er fra efter 1.3.7 og før 1.4.0.",
       "The readme names no game version. The zip is from after 1.3.7 and before 1.4.0.",
@@ -45,6 +51,8 @@ export const versionRows: VersionRow[] = [
     name: same("8 Player Mod"),
     detail: same("3.0.0 beta"),
     confirmed: same("1.3.6"),
+    atCommit: same("1.3.7"),
+    atCommitWhen: c("16. oktober 2026", "16 October 2026"),
     note: c(
       "Forfatteren har kun undersøgt 1.3.6.",
       "The author only checked 1.3.6.",
@@ -56,6 +64,8 @@ export const versionRows: VersionRow[] = [
     name: same("Boomerang Fu Online"),
     detail: same("2.4.1"),
     confirmed: unknown,
+    atCommit: same("1.4.0"),
+    atCommitWhen: c("7. november 2026", "7 November 2026"),
     note: c(
       "Udgivet 7. november 2026, efter 1.4.0. Readme’en nævner ingen spilversion.",
       "Released 7 November 2026, after 1.4.0. The readme names no game version.",
@@ -67,6 +77,8 @@ export const versionRows: VersionRow[] = [
     name: c("Online, prototype 2", "Online, prototype 2"),
     detail: c("9. juli 2026", "9 July 2026"),
     confirmed: unknown,
+    atCommit: same("1.3.7"),
+    atCommitWhen: c("9. juli 2026", "9 July 2026"),
     note: c(
       "Skrevet i juli 2026, efter 1.3.7 og før 1.4.0.",
       "Written in July 2026, after 1.3.7 and before 1.4.0.",
@@ -78,6 +90,8 @@ export const versionRows: VersionRow[] = [
     name: same("Remix"),
     detail: c("13. november 2026", "13 November 2026"),
     confirmed: unknown,
+    atCommit: same("1.4.0"),
+    atCommitWhen: c("13. november 2026", "13 November 2026"),
     note: c(
       "Samme grundlag som Chaos Mod. Ikke prøvet som færdig pakke.",
       "The same basis as Chaos Mod. Not tried as a finished package.",
@@ -89,6 +103,8 @@ export const versionRows: VersionRow[] = [
     name: same("Boomerang Mods"),
     detail: c("13. november 2026", "13 November 2026"),
     confirmed: unknown,
+    atCommit: same("1.4.0"),
+    atCommitWhen: c("13. november 2026", "13 November 2026"),
     note: c(
       "Kilde fra 13. november 2026. Samme forbehold som Chaos Mod.",
       "Source from 13 November 2026. The same caveat as Chaos Mod.",
@@ -100,6 +116,8 @@ export const versionRows: VersionRow[] = [
     name: same("Speedrun Timer"),
     detail: c("13. november 2026", "13 November 2026"),
     confirmed: unknown,
+    atCommit: same("1.4.0"),
+    atCommitWhen: c("13. november 2026", "13 November 2026"),
     note: c(
       "Repoet nævner ingen spilversion.",
       "The repo names no game version.",
@@ -111,6 +129,8 @@ export const versionRows: VersionRow[] = [
     name: same("Slaughter House"),
     detail: same("0.4.1"),
     confirmed: c("Før 1.3.5", "Before 1.3.5"),
+    atCommit: same("1.3.4"),
+    atCommitWhen: c("2. marts 2025", "2 March 2025"),
     note: c(
       "Udgivet 2. marts 2025, før 1.3.5 den 28. marts 2025.",
       "Released 2 March 2025, before 1.3.5 on 28 March 2025.",
@@ -122,6 +142,8 @@ export const versionRows: VersionRow[] = [
     name: c("Online, første prototype", "Online, first prototype"),
     detail: c("14. juni 2026", "14 June 2026"),
     confirmed: unknown,
+    atCommit: same("1.3.7"),
+    atCommitWhen: c("14. juni 2026", "14 June 2026"),
     note: c(
       "Afløst af prototypen fra juli. Ingen navngiven test.",
       "Superseded by the July prototype. No named test.",
@@ -133,6 +155,8 @@ export const versionRows: VersionRow[] = [
     name: same("Hat Loader"),
     detail: same("1.0.0"),
     confirmed: same("Unity 2019.2"),
+    atCommit: same("1.2.1"),
+    atCommitWhen: c("23. december 2022", "23 December 2022"),
     note: c(
       "Skrevet da spillet kørte på Unity 2019.2, før 1.3-linjen.",
       "Written when the game ran on Unity 2019.2, before the 1.3 line.",
@@ -144,6 +168,8 @@ export const versionRows: VersionRow[] = [
     name: c("Oprindelig Chaos-mod", "Original Chaos mod"),
     detail: c("Discord", "Discord"),
     confirmed: same("1.3.5"),
+    atCommit: same("1.3.5"),
+    atCommitWhen: c("30. marts 2025", "30 March 2025"),
     note: c(
       "Kommentaren 30. marts 2025 omtalte en build til 1.3.5.",
       "The comment of 30 March 2025 mentioned a build for 1.3.5.",
