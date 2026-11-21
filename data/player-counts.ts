@@ -93,6 +93,18 @@ export const playerRows: PlayerRow[] = [
     extraOnline: false,
   },
   {
+    id: "online-github",
+    name: same("Boomerang Fu Online"),
+    detail: same("2.4.1"),
+    humans: c("1 pr. computer", "1 per computer"),
+    bots: c("Ledige pladser af de fire", "Free slots among the four"),
+    cap: c("4 over nettet", "4 over the network"),
+    online: c("Ja, op til 4", "Yes, up to 4"),
+    extraHumans: false,
+    extraBots: false,
+    extraOnline: true,
+  },
+  {
     id: "online-2",
     name: c("Online, prototype 2", "Online, prototype 2"),
     detail: c("9. juli 2026", "9 July 2026"),

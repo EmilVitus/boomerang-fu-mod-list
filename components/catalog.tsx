@@ -72,6 +72,14 @@ export function Catalog() {
     [locale],
   );
 
+  const zipCount = copy.mods.filter((mod) =>
+    mod.links.some((link) => link.href.toLowerCase().endsWith(".zip")),
+  ).length;
+  const sourceCount = copy.mods.filter(
+    (mod) => mod.status === "kildekode" || mod.status === "discord",
+  ).length;
+  const onlineCount = copy.mods.filter((mod) => mod.categories.includes("online")).length;
+
   const visible = useMemo(() => {
     const needle = query.trim().toLowerCase();
     const filtered = copy.mods.filter((mod) => {
@@ -150,9 +158,9 @@ export function Catalog() {
         </div>
         <dl className="grid grid-cols-2 gap-3 sm:grid-cols-4">
           <Stat label={m.statMods} value={String(copy.mods.length)} />
-          <Stat label={m.statZip} value="6" />
-          <Stat label={m.statSource} value="3" />
-          <Stat label={m.statOnline} value="3" />
+          <Stat label={m.statZip} value={String(zipCount)} />
+          <Stat label={m.statSource} value={String(sourceCount)} />
+          <Stat label={m.statOnline} value={String(onlineCount)} />
         </dl>
       </header>
 
