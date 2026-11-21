@@ -55,13 +55,13 @@ export function LineageTree({
       id: "online",
       title: m.onlineFamily,
       summary: m.onlineFamilySummary,
-      rootIds: ["online-1"],
+      rootIds: ["online-1", "online-github"],
     },
     {
       id: "solo",
       title: m.soloFamily,
       summary: m.soloFamilySummary,
-      rootIds: ["eight", "hats"],
+      rootIds: ["eight", "hats", "speedrun"],
     },
   ];
 

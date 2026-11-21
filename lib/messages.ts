@@ -76,7 +76,7 @@ export const ui: Record<Locale, Messages> = {
   da: {
     metaTitle: "Boomerang Fu-mods til Windows",
     metaDescription:
-      "Katalog over offentlige Boomerang Fu-mods til Windows: Chaos Mod, stack-fork, otte spillere, online-prototyper og hatte.",
+      "Katalog over offentlige Boomerang Fu-mods til Windows: Chaos Mod, stack-fork, otte spillere, online-spil, en speedrun-timer og hatte.",
     language: "Sprog",
     languageGroup: "Vælg sprog",
     choiceBrowser: "Browser",
@@ -87,7 +87,7 @@ export const ui: Record<Locale, Messages> = {
     checked: (date) => `Sidst opdateret ${date}`,
     title: "Alle offentlige Boomerang Fu-mods til Windows",
     intro:
-      "Ti mods og forks, som kan hentes eller læses uden at være med i en lukket gruppe. Stamtræet viser, hvilken der er bygget oven på hvilken. Spillet fik version 1.4.0 den 3. november 2026. Ingen af dem er bekræftet på den build.",
+      "Tolv mods og forks, som kan hentes eller læses uden at være med i en lukket gruppe. Stamtræet viser, hvilken der er bygget oven på hvilken. Spillet fik version 1.4.0 den 3. november 2026. Ingen af dem er bekræftet på den build.",
     statMods: "Mods i listen",
     statZip: "Med en zip",
     statSource: "Kun kilde eller Discord",
@@ -109,7 +109,7 @@ export const ui: Record<Locale, Messages> = {
       `${shown} af ${total} ${inTree ? "i træet" : "vist"}`,
     emptyTitle: "Ingen mods matcher",
     emptyBody:
-      "Søgningen og filtrene rammer ingen af de ti poster. Ryd dem, og hele listen kommer tilbage.",
+      "Søgningen og filtrene rammer ingen af de tolv poster. Ryd dem, og hele listen kommer tilbage.",
     reset: "Nulstil filtre",
     readDetails: "Læs detaljer",
     sourceLink: "Kilde",
@@ -117,7 +117,7 @@ export const ui: Record<Locale, Messages> = {
     installFolderBefore: "Ejer du spillet på Steam, ligger det som regel i",
     installFolderAfter: ", ved siden af",
     installBepinexBefore:
-      "Chaos Mod og stack-forken har BepInEx med i zippen. 8 Player Mod og online-prototyperne kræver, at du installerer BepInEx 5 x64 selv og starter spillet én gang, før plugin-filen lægges i",
+      "Chaos Mod, stack-forken og Boomerang Fu Online har BepInEx med i zippen. 8 Player Mod, online-prototyperne og Speedrun Timer kræver, at du installerer BepInEx 5 x64 selv og starter spillet én gang, før plugin-filen lægges i",
     installBepinexMiddle: ". Seneste stabile udgave i 5.x-linjen er BepInEx",
     installBepinexAfter: (release) => release + ".",
     installOneDll:
@@ -126,7 +126,7 @@ export const ui: Record<Locale, Messages> = {
       "Efter 1.4.0 skal du regne med, at menuen kan crashe eller at modden slet ikke loader. Fjern dll’en for at komme tilbage til det rene spil.",
     omittedTitle: "Ikke med i listen",
     footer: (date) =>
-      `Kilder: GitHub-repos og releases for Jeffjewett27/BoomerangFoo, huseinnabil1997/BoomerangFoo-ChaosMod, Shyngyskhan-333/boomerang-fu-8-player-mod, alialyami90/BoomerangFooRemix, william-spongberg/BoomerangFooMod og exp111/BoomerangFuStuff, plus opslag i r/BoomerangFu. Download-tal er GitHubs tæller på den nævnte fil, læst ${date}. Modsene er uofficielle og har ingen tilknytning til Cranky Watermelon.`,
+      `Kilder: GitHub-repos og releases for Jeffjewett27/BoomerangFoo, huseinnabil1997/BoomerangFoo-ChaosMod, Shyngyskhan-333/boomerang-fu-8-player-mod, alialyami90/BoomerangFooRemix, william-spongberg/BoomerangFooMod, exp111/BoomerangFuStuff, fraustiz/boomerang-fu-online og Vulcan5757/B-Fu-Speedrunning-Mod, plus opslag i r/BoomerangFu. Download-tal er GitHubs tæller på den nævnte fil, læst ${date}. Modsene er uofficielle og har ingen tilknytning til Cranky Watermelon.`,
     dialogVersion: (authors, version) => `${authors}. Version ${version}.`,
     dialogLineage: "Stamtræ",
     dialogBuiltOn: "Bygget oven på",
@@ -146,7 +146,7 @@ export const ui: Record<Locale, Messages> = {
     featureColumn: "Funktion",
     playersTitle: "Ekstra spillere",
     playersIntro:
-      "Spillet har seks lokale mennesker. Farvede celler er det, modden lægger oveni. Chaos Mod og Remix fylder de ekstra pladser med bots. 8 Player Mod lægger to menneskepladser til og lader bot-loftet være. Stack-forken har begge dele i koden: otte controllere blev commit’et 9. september 2026, efter 0.5.6-zippen, som allerede nævner en lobby til 12. Fysiske controllere 7 og 8 er ikke testet i 8 Player Mod. Bot-kampe er.",
+      "Spillet har seks lokale mennesker. Farvede celler er det, modden lægger oveni. Chaos Mod og Remix fylder de ekstra pladser med bots. 8 Player Mod lægger to menneskepladser til og lader bot-loftet være. Stack-forken har begge dele i koden: otte controllere blev commit’et 9. september 2026, efter 0.5.6-zippen, som allerede nævner en lobby til 12. Fysiske controllere 7 og 8 er ikke testet i 8 Player Mod. Bot-kampe er. Boomerang Fu Online er én spiller pr. computer og højst fire over nettet. Prototypen fra juli lægger flere lokale spillere på samme maskine, men oplyser ikke antallet.",
     playersCaption:
       "Hvor mange lokale mennesker, bots og netværksspillere hver mod lægger til.",
     playerHeaders: ["Mod", "Mennesker ved skærmen", "Bots", "Samlet loft", "Over nettet"],
@@ -155,15 +155,15 @@ export const ui: Record<Locale, Messages> = {
       "Discord-modden blev til Jeff Jewetts BepInEx-udgave, og fire projekter er forket derfra. De lægger alle BoomerangFoo.dll ind, så de erstatter hinanden. Kortet for Chaos Mod viser udgivelse 0.5.4. Slaughter House er forket fra 0.4.1, før de senere tilføjelser.",
     onlineFamily: "Online",
     onlineFamilySummary:
-      "Samme forfatter lagde først et proof of concept op og byggede derefter den anden prototype oven på det.",
+      "Samme forfatter lagde først et proof of concept op og byggede derefter den anden prototype oven på det. Boomerang Fu Online er et andet projekt, med egen kode og en zip fra 7. november 2026.",
     soloFamily: "Egen kodebase",
     soloFamilySummary:
-      "8 Player Mod og Hat Loader har hver deres repo og deler ikke kode med Chaos-familien eller med hinanden.",
+      "8 Player Mod, Hat Loader og Speedrun Timer har hver deres repo og deler ikke kode med Chaos-familien eller med hinanden.",
   },
   en: {
     metaTitle: "Boomerang Fu mods for Windows",
     metaDescription:
-      "A catalog of public Boomerang Fu mods for Windows: Chaos Mod, the stack fork, eight players, online prototypes, and hats.",
+      "A catalog of public Boomerang Fu mods for Windows: Chaos Mod, the stack fork, eight players, online play, a speedrun timer, and hats.",
     language: "Language",
     languageGroup: "Choose language",
     choiceBrowser: "Browser",
@@ -174,7 +174,7 @@ export const ui: Record<Locale, Messages> = {
     checked: (date) => `Last updated ${date}`,
     title: "Every public Boomerang Fu mod for Windows",
     intro:
-      "Ten mods and forks you can download or read without joining a closed group. The family tree shows which one is built on which. The game reached version 1.4.0 on 3 November 2026. None of them are confirmed on that build.",
+      "Twelve mods and forks you can download or read without joining a closed group. The family tree shows which one is built on which. The game reached version 1.4.0 on 3 November 2026. None of them are confirmed on that build.",
     statMods: "Mods in the list",
     statZip: "With a zip",
     statSource: "Source or Discord only",
@@ -196,7 +196,7 @@ export const ui: Record<Locale, Messages> = {
       `${shown} of ${total} ${inTree ? "in the tree" : "shown"}`,
     emptyTitle: "No mods match",
     emptyBody:
-      "The search and filters miss all ten entries. Clear them and the full list comes back.",
+      "The search and filters miss all twelve entries. Clear them and the full list comes back.",
     reset: "Reset filters",
     readDetails: "Read details",
     sourceLink: "Source",
@@ -204,7 +204,7 @@ export const ui: Record<Locale, Messages> = {
     installFolderBefore: "If you own the game on Steam, it is usually in",
     installFolderAfter: ", next to",
     installBepinexBefore:
-      "Chaos Mod and the stack fork include BepInEx in the zip. 8 Player Mod and the online prototypes need you to install BepInEx 5 x64 yourself and start the game once before the plugin file goes in",
+      "Chaos Mod, the stack fork, and Boomerang Fu Online include BepInEx in the zip. 8 Player Mod, the online prototypes, and Speedrun Timer need you to install BepInEx 5 x64 yourself and start the game once before the plugin file goes in",
     installBepinexMiddle: ". The latest stable release on the 5.x line is BepInEx",
     installBepinexAfter: (release) => release + ".",
     installOneDll:
@@ -213,7 +213,7 @@ export const ui: Record<Locale, Messages> = {
       "After 1.4.0, expect the menu to crash or the mod not to load at all. Remove the dll to get back to the unmodified game.",
     omittedTitle: "Left out of the list",
     footer: (date) =>
-      `Sources: GitHub repos and releases for Jeffjewett27/BoomerangFoo, huseinnabil1997/BoomerangFoo-ChaosMod, Shyngyskhan-333/boomerang-fu-8-player-mod, alialyami90/BoomerangFooRemix, william-spongberg/BoomerangFooMod, and exp111/BoomerangFuStuff, plus posts on r/BoomerangFu. Download counts are GitHub's counter for the named file, read on ${date}. The mods are unofficial and are not affiliated with Cranky Watermelon.`,
+      `Sources: GitHub repos and releases for Jeffjewett27/BoomerangFoo, huseinnabil1997/BoomerangFoo-ChaosMod, Shyngyskhan-333/boomerang-fu-8-player-mod, alialyami90/BoomerangFooRemix, william-spongberg/BoomerangFooMod, exp111/BoomerangFuStuff, fraustiz/boomerang-fu-online, and Vulcan5757/B-Fu-Speedrunning-Mod, plus posts on r/BoomerangFu. Download counts are GitHub's counter for the named file, read on ${date}. The mods are unofficial and are not affiliated with Cranky Watermelon.`,
     dialogVersion: (authors, version) => `${authors}. Version ${version}.`,
     dialogLineage: "Family tree",
     dialogBuiltOn: "Built on top of",
@@ -233,7 +233,7 @@ export const ui: Record<Locale, Messages> = {
     featureColumn: "Feature",
     playersTitle: "Extra players",
     playersIntro:
-      "The game has six local humans. Coloured cells are what the mod adds. Chaos Mod and Remix fill the extra slots with bots. 8 Player Mod adds two human slots and leaves the bot cap alone. The stack fork has both in the code: eight controllers were committed on 9 September 2026, after the 0.5.6 zip, which already mentions a lobby for 12. Physical controllers 7 and 8 are not tested in 8 Player Mod. Bot matches are.",
+      "The game has six local humans. Coloured cells are what the mod adds. Chaos Mod and Remix fill the extra slots with bots. 8 Player Mod adds two human slots and leaves the bot cap alone. The stack fork has both in the code: eight controllers were committed on 9 September 2026, after the 0.5.6 zip, which already mentions a lobby for 12. Physical controllers 7 and 8 are not tested in 8 Player Mod. Bot matches are. Boomerang Fu Online is one player per computer and four at most over the network. The July prototype adds several local players on the same machine, but does not state how many.",
     playersCaption: "How many local humans, bots, and online players each mod adds.",
     playerHeaders: ["Mod", "Humans at the screen", "Bots", "Combined cap", "Over the network"],
     chaosFamily: "The Chaos family",
@@ -241,9 +241,9 @@ export const ui: Record<Locale, Messages> = {
       "The Discord mod became Jeff Jewett's BepInEx edition, and four projects are forked from that. They all install BoomerangFoo.dll, so they replace each other. The Chaos Mod card shows release 0.5.4. Slaughter House is forked from 0.4.1, before the later additions.",
     onlineFamily: "Online",
     onlineFamilySummary:
-      "The same author posted a proof of concept first, then built the second prototype on top of it.",
+      "The same author posted a proof of concept first, then built the second prototype on top of it. Boomerang Fu Online is a separate project, with its own code and a zip from 7 November 2026.",
     soloFamily: "Own codebase",
     soloFamilySummary:
-      "8 Player Mod and Hat Loader each have their own repo and do not share code with the Chaos family or with each other.",
+      "8 Player Mod, Hat Loader, and Speedrun Timer each have their own repo and do not share code with the Chaos family or with each other.",
   },
 };
