@@ -4,6 +4,7 @@ import { useMemo, useState, type ReactNode } from "react";
 import { Search, ExternalLink } from "lucide-react";
 
 import { FeatureTable, GameVersionTable } from "@/components/feature-table";
+import type { LiveVersions } from "@/lib/live-versions";
 import { LanguageSwitch } from "@/components/language-switch";
 import { LineageTree } from "@/components/lineage-tree";
 import { statusLabel, statusTone } from "@/components/status-tone";
@@ -36,6 +37,14 @@ import { useLocale, useUi } from "@/lib/locale";
 type SortId = "rank" | "newest" | "name";
 type ViewId = "liste" | "trae";
 
+function GithubMark() {
+  return (
+    <svg viewBox="0 0 16 16" aria-hidden="true" className="size-4 fill-current">
+      <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
+    </svg>
+  );
+}
+
 function emphasize(text: string, token: string) {
   const [before, after] = text.split(token);
   if (after === undefined) return text;
@@ -48,7 +57,7 @@ function emphasize(text: string, token: string) {
   );
 }
 
-export function Catalog() {
+export function Catalog({ liveVersions }: { liveVersions: LiveVersions }) {
   const { locale } = useLocale();
   const m = useUi();
   const [query, setQuery] = useState("");
@@ -143,18 +152,32 @@ export function Catalog() {
   return (
     <div className="min-h-screen bg-[radial-gradient(circle_at_top_left,oklch(0.93_0.06_70),transparent_32rem),radial-gradient(circle_at_bottom_right,oklch(0.9_0.05_140),transparent_28rem)]">
       <header className="mx-auto flex w-full max-w-6xl flex-col gap-8 px-4 pt-6 pb-6 sm:px-6 sm:pt-8">
-        <LanguageSwitch />
-        <div className="flex flex-wrap items-end justify-between gap-4">
-          <p className="font-heading text-sm tracking-[0.18em] text-primary uppercase">
+        <div className="grid grid-cols-1 items-start gap-x-8 gap-y-4 min-[1180px]:grid-cols-[minmax(0,1fr)_auto]">
+          <p className="font-heading pt-1 text-sm tracking-[0.18em] text-primary uppercase min-[1180px]:col-start-1 min-[1180px]:row-start-1">
             Steam · Windows · BepInEx
           </p>
-          <p className="text-sm text-muted-foreground">{m.checked(copy.checked)}</p>
-        </div>
-        <div className="max-w-3xl">
-          <h1 className="font-heading text-4xl leading-tight font-medium tracking-tight sm:text-6xl">
-            {m.title}
-          </h1>
-          <p className="mt-4 max-w-2xl text-lg leading-relaxed text-foreground/80">{m.intro}</p>
+          <div className="ml-auto flex flex-col items-end gap-1 min-[1180px]:col-start-2 min-[1180px]:row-start-1 min-[1180px]:row-span-2">
+            <div className="flex items-start gap-3">
+              <Button variant="outline" size="icon-sm" asChild>
+                <a
+                  href="https://github.com/EmilVitus/boomerang-fu-mod-list"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={m.github}
+                >
+                  <GithubMark />
+                </a>
+              </Button>
+              <LanguageSwitch />
+            </div>
+            <p className="text-sm text-muted-foreground">{m.checked(copy.checked)}</p>
+          </div>
+          <div className="max-w-3xl min-[1180px]:col-start-1 min-[1180px]:row-start-2">
+            <h1 className="font-heading text-4xl leading-tight font-medium tracking-tight sm:text-6xl">
+              {m.title}
+            </h1>
+            <p className="mt-4 max-w-2xl text-lg leading-relaxed text-foreground/80">{m.intro}</p>
+          </div>
         </div>
         <dl className="grid grid-cols-2 gap-3 sm:grid-cols-4">
           <Stat label={m.statMods} value={String(copy.mods.length)} />
@@ -322,7 +345,7 @@ export function Catalog() {
 
         <FeatureTable onOpen={setOpenId} />
 
-        <GameVersionTable onOpen={setOpenId} />
+        <GameVersionTable onOpen={setOpenId} live={liveVersions} />
 
         <section className="mt-12 grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
           <div className="rounded-2xl border bg-card p-5 sm:p-6">

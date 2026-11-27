@@ -4,6 +4,7 @@ export type Messages = {
   metaTitle: string;
   metaDescription: string;
   language: string;
+  github: string;
   languageGroup: string;
   choiceBrowser: string;
   choiceDanish: string;
@@ -67,6 +68,10 @@ export type Messages = {
   playerHeaders: [string, string, string, string, string];
   versionsTitle: string;
   versionsIntro: (version: string) => string;
+  versionsLive: string;
+  versionsSilent: (version: string) => string;
+  versionsUnnamed: (version: string) => string;
+  versionsStale: string;
   versionsCaption: string;
   versionSortStandard: string;
   versionSortOldest: string;
@@ -86,6 +91,7 @@ export const ui: Record<Locale, Messages> = {
     metaDescription:
       "Katalog over offentlige Boomerang Fu-mods til Windows: Chaos Mod, stack-fork, otte spillere, online-spil, Team Mint, en speedrun-timer, Mod Manager og hatte.",
     language: "Sprog",
+    github: "Kataloget på GitHub",
     languageGroup: "Vælg sprog",
     choiceBrowser: "Browser",
     choiceDanish: "Dansk",
@@ -161,7 +167,15 @@ export const ui: Record<Locale, Messages> = {
     playerHeaders: ["Mod", "Mennesker ved skærmen", "Bots", "Samlet loft", "Over nettet"],
     versionsTitle: "Bekræftet spilversion",
     versionsIntro: (version) =>
-      `Spillet er på ${version}. 1.4.0 kom 3. november 2026. Første versionskolonne er den nyeste spilversion, som kilden selv siger, at modden er prøvet på. Den næste er den version, Steam var på, da seneste commit eller indlæg blev lagt op.`,
+      `Spillet er på ${version}. Første versionskolonne er den nyeste spilversion, som kilden selv siger, at modden er prøvet på. «Spillet var på» er den version, Steam var på, da seneste commit eller indlæg blev lagt op.`,
+    versionsLive:
+      "Den kolonne læses fra Steams nyheder, den offentlige build og seneste push på GitHub. Svaret gemmes i op til seks timer.",
+    versionsSilent: (version) =>
+      `${version} står ikke i Steams nyheder. Datoen er tidspunktet, hvor den offentlige build blev skiftet.`,
+    versionsUnnamed: (version) =>
+      `Steam har skiftet build uden at navngive versionen. Den er nyere end ${version}.`,
+    versionsStale:
+      "Steam eller GitHub svarede ikke denne gang, så kolonnen bruger de senest kendte datoer.",
     versionsCaption:
       "Bekræftet spilversion, og hvilken version Steam var på ved seneste opdatering.",
     versionSortStandard: "Standard",
@@ -188,6 +202,7 @@ export const ui: Record<Locale, Messages> = {
     metaDescription:
       "A catalog of public Boomerang Fu mods for Windows: Chaos Mod, the stack fork, eight players, online play, Team Mint, a speedrun timer, Mod Manager, and hats.",
     language: "Language",
+    github: "Catalog on GitHub",
     languageGroup: "Choose language",
     choiceBrowser: "Browser",
     choiceDanish: "Dansk",
@@ -262,7 +277,15 @@ export const ui: Record<Locale, Messages> = {
     playerHeaders: ["Mod", "Humans at the screen", "Bots", "Combined cap", "Over the network"],
     versionsTitle: "Confirmed game version",
     versionsIntro: (version) =>
-      `The game is on ${version}. 1.4.0 arrived on 3 November 2026. The first version column is the newest game version that each mod's own source says it was tried on. The next is the version Steam was on when the latest commit or post went up.`,
+      `The game is on ${version}. The first version column is the newest game version that each mod's own source says it was tried on. “Game was on” is the version Steam was on when the latest commit or post went up.`,
+    versionsLive:
+      "That column is read from Steam news, the public build, and the latest GitHub push. The answer is kept for up to six hours.",
+    versionsSilent: (version) =>
+      `${version} is not in Steam’s news. The date is when the public build changed.`,
+    versionsUnnamed: (version) =>
+      `Steam changed the build without naming the version. It is newer than ${version}.`,
+    versionsStale:
+      "Steam or GitHub did not answer this time, so the column uses the last known dates.",
     versionsCaption: "Confirmed game version, and which version Steam was on at the latest update.",
     versionSortStandard: "Standard",
     versionSortOldest: "Oldest game version",

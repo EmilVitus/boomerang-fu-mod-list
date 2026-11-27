@@ -8,7 +8,9 @@ import {
   featureCellLabel,
   type FeatureCell,
 } from "@/data/chaos-features";
-import { currentGame, versionRows } from "@/data/game-versions";
+import { versionRows } from "@/data/game-versions";
+import { pointRank } from "@/lib/game-clock";
+import type { LiveVersions } from "@/lib/live-versions";
 import { playerRows } from "@/data/player-counts";
 import { Button } from "@/components/ui/button";
 import { localize } from "@/lib/copy";
@@ -26,8 +28,18 @@ const raisedClass = "bg-primary/15 font-medium text-primary";
 
 type VersionSort = "standard" | "oldest" | "newest";
 
-function gameVersionRank(version: string) {
-  return version.split(".").reduce((total, part) => total * 100 + Number(part), 0);
+function formatDay(iso: string, locale: "da" | "en") {
+  return new Intl.DateTimeFormat(locale === "da" ? "da-DK" : "en-GB", {
+    timeZone: "Europe/Copenhagen",
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  }).format(new Date(iso));
+}
+
+function wasOnLabel(version: string, unnamedAfter: string | null, locale: "da" | "en") {
+  if (!unnamedAfter) return version;
+  return locale === "da" ? `Nyere end ${unnamedAfter}` : `Newer than ${unnamedAfter}`;
 }
 
 export function FeatureTable({ onOpen }: { onOpen: (id: string) => void }) {
@@ -181,29 +193,46 @@ export function FeatureTable({ onOpen }: { onOpen: (id: string) => void }) {
   );
 }
 
-export function GameVersionTable({ onOpen }: { onOpen: (id: string) => void }) {
+export function GameVersionTable({
+  onOpen,
+  live,
+}: {
+  onOpen: (id: string) => void;
+  live: LiveVersions;
+}) {
   const { locale } = useLocale();
   const m = useUi();
-  const [versionSort, setVersionSort] = useState<VersionSort>("standard");
-  const copy = useMemo(() => localize(locale, { versionRows, currentGame }), [locale]);
+  const [versionSort, setVersionSort] = useState<VersionSort>("newest");
+  const copy = useMemo(() => localize(locale, { versionRows }), [locale]);
   const rows = useMemo(() => {
-    if (versionSort === "standard") return copy.versionRows;
+    const withLive = copy.versionRows.map((row) => {
+      const cell = live.rows[row.id];
+      return {
+        ...row,
+        atCommit: cell ? wasOnLabel(cell.version, cell.unnamedAfter, locale) : row.atCommit,
+        atCommitWhen: cell ? formatDay(cell.at, locale) : row.atCommitWhen,
+        sortRank: cell ? pointRank(cell) : pointRank({ version: row.atCommit, unnamedAfter: null }),
+      };
+    });
+    if (versionSort === "standard") return withLive;
     const direction = versionSort === "oldest" ? 1 : -1;
-    return copy.versionRows
+    return withLive
       .map((row, index) => ({ row, index }))
-      .sort(
-        (a, b) =>
-          direction * (gameVersionRank(a.row.atCommit) - gameVersionRank(b.row.atCommit)) ||
-          a.index - b.index,
-      )
+      .sort((a, b) => direction * (a.row.sortRank - b.row.sortRank) || a.index - b.index)
       .map((item) => item.row);
-  }, [copy.versionRows, versionSort]);
+  }, [copy.versionRows, live.rows, locale, versionSort]);
+  const current = live.current;
+  const currentLabel = `${wasOnLabel(current.version, current.unnamedAfter, locale)} ${
+    locale === "da" ? "fra" : "from"
+  } ${formatDay(current.at, locale)}`;
 
   return (
     <section id="spilversion" className="mt-12 rounded-2xl border bg-card p-4 shadow-sm sm:p-6">
       <h2 className="font-heading text-2xl font-medium">{m.versionsTitle}</h2>
       <p className="mt-2 max-w-3xl text-sm leading-relaxed text-muted-foreground">
-        {m.versionsIntro(copy.currentGame)}
+        {m.versionsIntro(currentLabel)} {live.steam && live.github ? m.versionsLive : m.versionsStale}{" "}
+        {current.unnamedAfter ? m.versionsUnnamed(current.unnamedAfter) : null}
+        {current.silent && !current.unnamedAfter ? m.versionsSilent(current.version) : null}
       </p>
       <div className="mt-4 flex flex-col gap-2 sm:flex-row sm:items-start">
         <p id="spilversion-sortering" className="w-24 shrink-0 pt-1.5 text-sm font-medium text-muted-foreground">
@@ -212,9 +241,9 @@ export function GameVersionTable({ onOpen }: { onOpen: (id: string) => void }) {
         <div className="flex flex-wrap gap-2" role="group" aria-labelledby="spilversion-sortering">
           {(
             [
-              ["standard", m.versionSortStandard],
-              ["oldest", m.versionSortOldest],
               ["newest", m.versionSortNewest],
+              ["oldest", m.versionSortOldest],
+              ["standard", m.versionSortStandard],
             ] as const
           ).map(([id, label]) => (
             <Button
