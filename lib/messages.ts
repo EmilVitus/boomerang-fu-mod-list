@@ -4,6 +4,7 @@ export type Messages = {
   metaTitle: string;
   metaDescription: string;
   language: string;
+  github: string;
   languageGroup: string;
   choiceBrowser: string;
   choiceDanish: string;
@@ -90,6 +91,7 @@ export const ui: Record<Locale, Messages> = {
     metaDescription:
       "Katalog over offentlige Boomerang Fu-mods til Windows: Chaos Mod, stack-fork, otte spillere, online-spil, Team Mint, en speedrun-timer, Mod Manager og hatte.",
     language: "Sprog",
+    github: "Kataloget på GitHub",
     languageGroup: "Vælg sprog",
     choiceBrowser: "Browser",
     choiceDanish: "Dansk",
@@ -200,6 +202,7 @@ export const ui: Record<Locale, Messages> = {
     metaDescription:
       "A catalog of public Boomerang Fu mods for Windows: Chaos Mod, the stack fork, eight players, online play, Team Mint, a speedrun timer, Mod Manager, and hats.",
     language: "Language",
+    github: "Catalog on GitHub",
     languageGroup: "Choose language",
     choiceBrowser: "Browser",
     choiceDanish: "Dansk",
