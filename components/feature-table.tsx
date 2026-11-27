@@ -202,7 +202,7 @@ export function GameVersionTable({
 }) {
   const { locale } = useLocale();
   const m = useUi();
-  const [versionSort, setVersionSort] = useState<VersionSort>("standard");
+  const [versionSort, setVersionSort] = useState<VersionSort>("newest");
   const copy = useMemo(() => localize(locale, { versionRows }), [locale]);
   const rows = useMemo(() => {
     const withLive = copy.versionRows.map((row) => {
@@ -241,9 +241,9 @@ export function GameVersionTable({
         <div className="flex flex-wrap gap-2" role="group" aria-labelledby="spilversion-sortering">
           {(
             [
-              ["standard", m.versionSortStandard],
-              ["oldest", m.versionSortOldest],
               ["newest", m.versionSortNewest],
+              ["oldest", m.versionSortOldest],
+              ["standard", m.versionSortStandard],
             ] as const
           ).map(([id, label]) => (
             <Button
