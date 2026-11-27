@@ -1,6 +1,6 @@
 import { c, type Copy } from "@/lib/copy";
 
-export const CHECKED_LABEL = c("21. november 2026", "21 November 2026");
+export const CHECKED_LABEL = c("27. november 2026", "27 November 2026");
 
 export const BEPINEX_RELEASE = c(
   "5.4.23.6, udgivet 24. oktober 2026",
@@ -68,6 +68,8 @@ export const lineage: LineageEntry[] = [
   { id: "eight", basedOn: null, relation: null },
   { id: "hats", basedOn: null, relation: null },
   { id: "speedrun", basedOn: null, relation: null },
+  { id: "team-mint", basedOn: null, relation: null },
+  { id: "manager", basedOn: null, relation: null },
 ];
 
 export type LineageView = {
@@ -609,7 +611,7 @@ export const mods: ModEntry[] = [
         href: "https://github.com/alialyami90/BoomerangFooRemix/commit/a62566a6",
       },
     ],
-    rank: 6,
+    rank: 7,
   },
   {
     id: "gravity",
@@ -676,7 +678,7 @@ export const mods: ModEntry[] = [
     links: [
       { label: same("GitHub"), href: "https://github.com/acaburaz/boomerang-mods" },
     ],
-    rank: 7,
+    rank: 8,
   },
   {
     id: "slaughter",
@@ -743,7 +745,7 @@ export const mods: ModEntry[] = [
       "56 downloads af 0.4.1-zippen på GitHub",
       "56 downloads of the 0.4.1 zip on GitHub",
     ),
-    rank: 9,
+    rank: 11,
   },
   {
     id: "online-1",
@@ -806,7 +808,7 @@ export const mods: ModEntry[] = [
         href: "https://www.reddit.com/r/BoomerangFu/comments/1urnyqs/boomerang_fu_online_multiplayer_mod_second/",
       },
     ],
-    rank: 10,
+    rank: 12,
   },
   {
     id: "hats",
@@ -874,17 +876,149 @@ export const mods: ModEntry[] = [
       "14 downloads af hattepakken på GitHub",
       "14 downloads of the hat pack on GitHub",
     ),
-    rank: 11,
+    rank: 13,
+  },
+  {
+    id: "team-mint",
+    name: same("Team Mint"),
+    authors: c("Nørdic (Scorch), GitHub Nordic-maker", "Nørdic (Scorch), GitHub Nordic-maker"),
+    version: same("1.0.0"),
+    released: "2026-11-26",
+    releasedLabel: c("26. november 2026", "26 November 2026"),
+    updated: "2026-11-26",
+    updatedLabel: c("26. november 2026", "26 November 2026"),
+    updateNote: c(
+      "Zippen blev udgivet 26. november 2026. Samme dags sidste commit retter kun download-linket. Tekstfilen i zippen kalder også pluginnet for intern version 1.3.30.",
+      "The zip was published on 26 November 2026. That day's last commit only fixes the download link. The text file in the zip also calls the plugin internal version 1.3.30.",
+    ),
+    status: "udgivet",
+    categories: ["spiltilstand"],
+    summary: c(
+      "Et BepInEx-plugin, der lægger Team Mint ind som et tredje hold ved siden af Spicey og Chill. Repoet har kun README. Selve modden ligger i zippen.",
+      "A BepInEx plugin that adds Team Mint as a third team beside Spicey and Chill. The repo only has a README. The mod itself is in the zip.",
+    ),
+    features: [
+      c(
+        "Et holdområde på Pick Teams. Controlleren går ned for at vælge Mint og op for at komme tilbage. Venstre og højre vælger stadig Spicey og Chill.",
+        "A team area on Pick Teams. The controller moves down to choose Mint and up to go back. Left and right still choose Spicey and Chill.",
+      ),
+      c(
+        "En kamp kan bruge to af holdene eller alle tre. Den kan starte, når alle klar-spillere og bots har et hold, og mindst to hold er i brug.",
+        "A match can use two of the teams or all three. It can start when every ready player and bot has a team, and at least two teams are in use.",
+      ),
+      c(
+        "Y skifter mellem fire bot-tilstande: Bots Join Both Teams, Bots Join Chill, Bots Join Spicey og Bots Join Mint.",
+        "Y cycles four bot modes: Bots Join Both Teams, Bots Join Chill, Bots Join Spicey, and Bots Join Mint.",
+      ),
+      c(
+        "Egne farver, et banner og et trekantet point-ikon. Automatisk fordeling tager endnu ikke Mint med i den almindelige blandede tilstand.",
+        "Its own colors, a banner, and a triangle score icon. Automatic assignment does not yet include Mint in the ordinary mixed mode.",
+      ),
+    ],
+    install: [
+      c(
+        "Installér BepInEx, hvis det ikke allerede er i spillets mappe, og start spillet én gang.",
+        "Install BepInEx if it is not already in the game folder, and start the game once.",
+      ),
+      c(
+        "Hent Team-Mint-Public-v1.0.zip. I mappen Plugins ligger tre filer: Boomerang Fu ThirdTeam V.1.0 Release.dll, TeamMintBanner.png og MintTriangleFlag.png. Læg alle tre i BepInEx\\plugins.",
+        "Download Team-Mint-Public-v1.0.zip. The Plugins folder holds three files: Boomerang Fu ThirdTeam V.1.0 Release.dll, TeamMintBanner.png, and MintTriangleFlag.png. Place all three in BepInEx\\plugins.",
+      ),
+      c(
+        "De to png-filer skal blive liggende ved siden af dll’en. Tekstfilen i zippen kalder dll’en BoomerangFuTeamMint.dll. Det navn er ikke i zippen.",
+        "The two png files have to stay beside the dll. The text file in the zip calls the dll BoomerangFuTeamMint.dll. That name is not in the zip.",
+      ),
+    ],
+    compatibility: c(
+      "Hverken GitHub-readme’en eller tekstfilen i zippen nævner en spilversion. Zippen blev lagt op 26. november 2026, mens Steam var på 1.4.1, men det er ikke en bekræftet test. Nogle partikler kan stadig være blå eller Chill-farvede, og enkelte figurer er farvet skævt.",
+      "Neither the GitHub readme nor the text file in the zip names a game version. The zip went up on 26 November 2026, while Steam was on 1.4.1, but that is not a confirmed test. Some particles can still be blue or Chill-colored, and a few characters are recolored imperfectly.",
+    ),
+    conflicts: c(
+      "Dll’en hedder ikke BoomerangFoo.dll, så den erstatter ikke Chaos-familien. Fjern en ældre Team Mint- eller Third Team-dll. info.json peger på preview.png, men filen i zippen hedder prevew.png.",
+      "The dll is not named BoomerangFoo.dll, so it does not replace the Chaos family. Remove an older Team Mint or Third Team dll. info.json points at preview.png, but the file in the zip is named prevew.png.",
+    ),
+    links: [
+      { label: same("GitHub"), href: "https://github.com/Nordic-maker/Boomerang-Fu-Team-Mint" },
+      {
+        label: c("Hent 1.0.0", "Download 1.0.0"),
+        href: "https://github.com/Nordic-maker/Boomerang-Fu-Team-Mint/releases/download/V1.0.0/Team-Mint-Public-v1.0.zip",
+      },
+    ],
+    downloads: c(
+      "2 downloads af Team-Mint-Public-v1.0.zip",
+      "2 downloads of Team-Mint-Public-v1.0.zip",
+    ),
+    rank: 6,
+  },
+  {
+    id: "manager",
+    name: same("Mod Manager"),
+    authors: same("Vulcan5757"),
+    version: same("1.0.0"),
+    released: "2026-11-25",
+    releasedLabel: c("25. november 2026", "25 November 2026"),
+    updated: "2026-11-25",
+    updatedLabel: c("25. november 2026", "25 November 2026"),
+    updateNote: c(
+      "info.json siger 1.0.0 og forfatteren Vulcan57. Tagget v1.0.0 har ingen zip. Dll, info.json og preview.png ligger i repoet.",
+      "info.json says 1.0.0 and the author Vulcan57. The v1.0.0 tag has no zip. The dll, info.json, and preview.png are in the repo.",
+    ),
+    status: "udgivet",
+    categories: ["vaerktoej"],
+    summary: c(
+      "Et BepInEx-plugin, der tænder og slukker andre mods inde i spillet, genstarter spillet, så ændringen træder i kraft, og kan vise forhåndsvisning og beskrivelse. Det har controller-styring.",
+      "A BepInEx plugin that turns other mods on and off inside the game, restarts the game so the change takes effect, and can show a preview and a description. It has controller support.",
+    ),
+    features: [
+      c(
+        "Hver mod skal ligge i sin egen mappe med en info.json. En forhåndsvisning skal hedde det, info.json peger på.",
+        "Each mod has to sit in its own folder with an info.json. A preview has to use the name info.json points at.",
+      ),
+      c(
+        "Readme’en nævner en senere online-katalog og opdateringstjek. Det er ikke med i 1.0.0.",
+        "The readme mentions a later online catalog and update check. That is not in 1.0.0.",
+      ),
+    ],
+    install: [
+      c(
+        "Installér BepInEx, hvis det ikke allerede er i spillets mappe, og start spillet én gang.",
+        "Install BepInEx if it is not already in the game folder, and start the game once.",
+      ),
+      c(
+        "Tagget v1.0.0 har ingen zip. Hent mappen fra repoet med B-Fu Mod Manager.dll, info.json og preview.png, og læg den i BepInEx\\plugins.",
+        "The v1.0.0 tag has no zip. Download the folder from the repo with B-Fu Mod Manager.dll, info.json, and preview.png, and place it in BepInEx\\plugins.",
+      ),
+    ],
+    compatibility: c(
+      "Readme’en nævner ingen spilversion. 1.0.0 blev lagt op 25. november 2026, mens Steam var på 1.4.1, men det er ikke en bekræftet test.",
+      "The readme names no game version. 1.0.0 went up on 25 November 2026, while Steam was on 1.4.1, but that is not a confirmed test.",
+    ),
+    conflicts: c(
+      "Filen hedder ikke BoomerangFoo.dll, så den erstatter ikke Chaos-familien. Den er lavet til at ligge ved siden af andre plugins og slå dem til og fra.",
+      "The file is not named BoomerangFoo.dll, so it does not replace the Chaos family. It is made to sit beside other plugins and turn them on and off.",
+    ),
+    links: [
+      { label: same("GitHub"), href: "https://github.com/Vulcan5757/B-Fu-Mod-Manager" },
+      {
+        label: c("Tag v1.0.0", "Tag v1.0.0"),
+        href: "https://github.com/Vulcan5757/B-Fu-Mod-Manager/releases/tag/v1.0.0",
+      },
+    ],
+    rank: 10,
   },
   {
     id: "speedrun",
     name: c("Speedrun Timer", "Speedrun Timer"),
     authors: same("Vulcan5757"),
-    version: c("DLL uden version", "DLL, no version"),
-    released: "2026-11-13",
-    releasedLabel: c("13. november 2026", "13 November 2026"),
-    updated: "2026-11-13",
-    updatedLabel: c("13. november 2026", "13 November 2026"),
+    version: same("1.1.0"),
+    released: "2026-11-25",
+    releasedLabel: c("25. november 2026", "25 November 2026"),
+    updated: "2026-11-25",
+    updatedLabel: c("25. november 2026", "25 November 2026"),
+    updateNote: c(
+      "Dll’en lå i repoet 13. november 2026 uden versionsnummer. info.json fra 25. november siger 1.1.0. Tagget v1.1.0 har ingen zip.",
+      "The dll was in the repo on 13 November 2026 without a version number. The info.json from 25 November says 1.1.0. The v1.1.0 tag has no zip.",
+    ),
     status: "udgivet",
     categories: ["vaerktoej"],
     summary: c(
@@ -915,17 +1049,17 @@ export const mods: ModEntry[] = [
         "Install BepInEx if it is not already in the game folder.",
       ),
       c(
-        "Hent Speedrunning Mod.dll og læg den i BepInEx\\plugins.",
-        "Download Speedrunning Mod.dll and place it in BepInEx\\plugins.",
+        "Tagget v1.1.0 har ingen zip. Hent mappen fra repoet med Speedrunning Mod.dll, info.json og preview.png, og læg den i BepInEx\\plugins.",
+        "The v1.1.0 tag has no zip. Download the folder from the repo with Speedrunning Mod.dll, info.json, and preview.png, and place it in BepInEx\\plugins.",
       ),
       c(
-        "Omdøb dll’en til .disabled for at deaktivere den.",
-        "Rename the dll to .disabled to disable it.",
+        "info.json og preview.png er til Mod Manager. Omdøb dll’en til .disabled for at deaktivere den.",
+        "info.json and preview.png are for Mod Manager. Rename the dll to .disabled to disable it.",
       ),
     ],
     compatibility: c(
-      "Repoet angiver ikke en spilversion eller en test på 1.4.0 eller 1.4.1. Timeren læser spillets tilstand, så den kan kræve tilpasning, hvis runder eller skærme ændrer sig.",
-      "The repo does not name a game version or a test on 1.4.0 or 1.4.1. The timer reads the game's state, so it may need adjustment if rounds or screens change.",
+      "info.json 1.1.0 er fra 25. november 2026. Readme’en nævner ingen spilversion, så den er ikke bekræftet på 1.4.1. Timeren læser spillets tilstand, så den kan kræve tilpasning, hvis runder eller skærme ændrer sig.",
+      "info.json 1.1.0 is from 25 November 2026. The readme names no game version, so it is not confirmed on 1.4.1. The timer reads the game's state, so it may need adjustment if rounds or screens change.",
     ),
     conflicts: c(
       "Et selvstændigt plugin. Filen hedder ikke BoomerangFoo.dll, så den erstatter ikke Chaos-familien.",
@@ -934,15 +1068,15 @@ export const mods: ModEntry[] = [
     links: [
       { label: same("GitHub"), href: "https://github.com/Vulcan5757/B-Fu-Speedrunning-Mod" },
       {
-        label: c("Hent DLL", "Download DLL"),
-        href: "https://github.com/Vulcan5757/B-Fu-Speedrunning-Mod/raw/main/Speedrunning%20Mod.dll",
+        label: c("Tag v1.1.0", "Tag v1.1.0"),
+        href: "https://github.com/Vulcan5757/B-Fu-Speedrunning-Mod/releases/tag/v1.1.0",
       },
       {
         label: c("Speedrun.com", "Speedrun.com"),
         href: "https://www.speedrun.com/boomerang_fu",
       },
     ],
-    rank: 8,
+    rank: 9,
   },
   {
     id: "original",
@@ -1005,7 +1139,7 @@ export const mods: ModEntry[] = [
         href: "https://github.com/Jeffjewett27/BoomerangFoo",
       },
     ],
-    rank: 12,
+    rank: 14,
   },
 ];
 
