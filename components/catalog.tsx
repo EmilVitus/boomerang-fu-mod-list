@@ -152,25 +152,25 @@ export function Catalog({ liveVersions }: { liveVersions: LiveVersions }) {
   return (
     <div className="min-h-screen bg-[radial-gradient(circle_at_top_left,oklch(0.93_0.06_70),transparent_32rem),radial-gradient(circle_at_bottom_right,oklch(0.9_0.05_140),transparent_28rem)]">
       <header className="mx-auto flex w-full max-w-6xl flex-col gap-8 px-4 pt-6 pb-6 sm:px-6 sm:pt-8">
-        <div className="flex flex-wrap items-start justify-between gap-4">
-          <div className="flex flex-col gap-1">
-            <p className="font-heading pt-1 text-sm tracking-[0.18em] text-primary uppercase">
-              Steam · Windows · BepInEx
-            </p>
+        <div className="flex flex-wrap items-start justify-between gap-x-4 gap-y-2">
+          <p className="font-heading pt-1 text-sm tracking-[0.18em] text-primary uppercase">
+            Steam · Windows · BepInEx
+          </p>
+          <div className="ml-auto flex flex-col items-end gap-1">
+            <div className="flex items-start gap-3">
+              <Button variant="outline" size="icon-sm" asChild>
+                <a
+                  href="https://github.com/EmilVitus/boomerang-fu-mod-list"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={m.github}
+                >
+                  <GithubMark />
+                </a>
+              </Button>
+              <LanguageSwitch />
+            </div>
             <p className="text-sm text-muted-foreground">{m.checked(copy.checked)}</p>
-          </div>
-          <div className="flex items-start gap-3">
-            <Button variant="outline" size="icon-sm" asChild>
-              <a
-                href="https://github.com/EmilVitus/boomerang-fu-mod-list"
-                target="_blank"
-                rel="noreferrer"
-                aria-label={m.github}
-              >
-                <GithubMark />
-              </a>
-            </Button>
-            <LanguageSwitch />
           </div>
         </div>
         <div className="max-w-3xl">
