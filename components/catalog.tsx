@@ -152,11 +152,11 @@ export function Catalog({ liveVersions }: { liveVersions: LiveVersions }) {
   return (
     <div className="min-h-screen bg-[radial-gradient(circle_at_top_left,oklch(0.93_0.06_70),transparent_32rem),radial-gradient(circle_at_bottom_right,oklch(0.9_0.05_140),transparent_28rem)]">
       <header className="mx-auto flex w-full max-w-6xl flex-col gap-8 px-4 pt-6 pb-6 sm:px-6 sm:pt-8">
-        <div className="flex flex-wrap items-start justify-between gap-x-4 gap-y-2">
-          <p className="font-heading pt-1 text-sm tracking-[0.18em] text-primary uppercase">
+        <div className="grid grid-cols-1 items-start gap-x-8 gap-y-4 min-[1180px]:grid-cols-[minmax(0,1fr)_auto]">
+          <p className="font-heading pt-1 text-sm tracking-[0.18em] text-primary uppercase min-[1180px]:col-start-1 min-[1180px]:row-start-1">
             Steam · Windows · BepInEx
           </p>
-          <div className="ml-auto flex flex-col items-end gap-1">
+          <div className="ml-auto flex flex-col items-end gap-1 min-[1180px]:col-start-2 min-[1180px]:row-start-1 min-[1180px]:row-span-2">
             <div className="flex items-start gap-3">
               <Button variant="outline" size="icon-sm" asChild>
                 <a
@@ -172,12 +172,12 @@ export function Catalog({ liveVersions }: { liveVersions: LiveVersions }) {
             </div>
             <p className="text-sm text-muted-foreground">{m.checked(copy.checked)}</p>
           </div>
-        </div>
-        <div className="max-w-3xl">
-          <h1 className="font-heading text-4xl leading-tight font-medium tracking-tight sm:text-6xl">
-            {m.title}
-          </h1>
-          <p className="mt-4 max-w-2xl text-lg leading-relaxed text-foreground/80">{m.intro}</p>
+          <div className="max-w-3xl min-[1180px]:col-start-1 min-[1180px]:row-start-2">
+            <h1 className="font-heading text-4xl leading-tight font-medium tracking-tight sm:text-6xl">
+              {m.title}
+            </h1>
+            <p className="mt-4 max-w-2xl text-lg leading-relaxed text-foreground/80">{m.intro}</p>
+          </div>
         </div>
         <dl className="grid grid-cols-2 gap-3 sm:grid-cols-4">
           <Stat label={m.statMods} value={String(copy.mods.length)} />
