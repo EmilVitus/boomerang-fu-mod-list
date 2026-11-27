@@ -84,7 +84,7 @@ export const ui: Record<Locale, Messages> = {
   da: {
     metaTitle: "Boomerang Fu-mods til Windows",
     metaDescription:
-      "Katalog over offentlige Boomerang Fu-mods til Windows: Chaos Mod, stack-fork, otte spillere, online-spil, en speedrun-timer og hatte.",
+      "Katalog over offentlige Boomerang Fu-mods til Windows: Chaos Mod, stack-fork, otte spillere, online-spil, Team Mint, en speedrun-timer, Mod Manager og hatte.",
     language: "Sprog",
     languageGroup: "Vælg sprog",
     choiceBrowser: "Browser",
@@ -95,7 +95,7 @@ export const ui: Record<Locale, Messages> = {
     checked: (date) => `Sidst opdateret ${date}`,
     title: "Alle offentlige Boomerang Fu-mods til Windows",
     intro:
-      "Tolv mods og forks, som kan hentes eller læses uden at være med i en lukket gruppe. Stamtræet viser, hvilken der er bygget oven på hvilken. Nederst står, hvilken spilversion hver mod er bekræftet på.",
+      "Fjorten mods og forks, som kan hentes eller læses uden at være med i en lukket gruppe. Stamtræet viser, hvilken der er bygget oven på hvilken. En tabel viser, hvilken spilversion hver mod er bekræftet på.",
     statMods: "Mods i listen",
     statZip: "Med en zip",
     statSource: "Kun kilde eller Discord",
@@ -118,7 +118,7 @@ export const ui: Record<Locale, Messages> = {
       `${shown} af ${total} ${inTree ? "i træet" : "vist"}`,
     emptyTitle: "Ingen mods matcher",
     emptyBody:
-      "Søgningen og filtrene rammer ingen af de tolv poster. Ryd dem, og hele listen kommer tilbage.",
+      "Søgningen og filtrene rammer ingen af de fjorten poster. Ryd dem, og hele listen kommer tilbage.",
     reset: "Nulstil filtre",
     readDetails: "Læs detaljer",
     sourceLink: "Kilde",
@@ -126,7 +126,7 @@ export const ui: Record<Locale, Messages> = {
     installFolderBefore: "Ejer du spillet på Steam, ligger det som regel i",
     installFolderAfter: ", ved siden af",
     installBepinexBefore:
-      "Chaos Mod, stack-forken og Boomerang Fu Online har BepInEx med i zippen. 8 Player Mod, online-prototyperne og Speedrun Timer kræver, at du installerer BepInEx 5 x64 selv og starter spillet én gang, før plugin-filen lægges i",
+      "Chaos Mod, stack-forken og Boomerang Fu Online har BepInEx med i zippen. 8 Player Mod, online-prototyperne, Team Mint, Speedrun Timer og Mod Manager kræver, at du installerer BepInEx 5 x64 selv og starter spillet én gang, før plugin-filen lægges i",
     installBepinexMiddle: ". Seneste stabile udgave i 5.x-linjen er BepInEx",
     installBepinexAfter: (release) => release + ".",
     installOneDll:
@@ -135,7 +135,7 @@ export const ui: Record<Locale, Messages> = {
       "Efter 1.4.1 skal du regne med, at menuen kan crashe eller at modden slet ikke loader. Fjern dll’en for at komme tilbage til det rene spil.",
     omittedTitle: "Ikke med i listen",
     footer: (date) =>
-      `Kilder: GitHub-repos og releases for Jeffjewett27/BoomerangFoo, huseinnabil1997/BoomerangFoo-ChaosMod, Shyngyskhan-333/boomerang-fu-8-player-mod, alialyami90/BoomerangFooRemix, william-spongberg/BoomerangFooMod, exp111/BoomerangFuStuff, fraustiz/boomerang-fu-online og Vulcan5757/B-Fu-Speedrunning-Mod, plus opslag i r/BoomerangFu. Download-tal er GitHubs tæller på den nævnte fil, læst ${date}. Modsene er uofficielle og har ingen tilknytning til Cranky Watermelon.`,
+      `Kilder: GitHub-repos og releases for Jeffjewett27/BoomerangFoo, huseinnabil1997/BoomerangFoo-ChaosMod, Shyngyskhan-333/boomerang-fu-8-player-mod, alialyami90/BoomerangFooRemix, william-spongberg/BoomerangFooMod, exp111/BoomerangFuStuff, fraustiz/boomerang-fu-online, Vulcan5757/B-Fu-Speedrunning-Mod, Vulcan5757/B-Fu-Mod-Manager og Nordic-maker/Boomerang-Fu-Team-Mint, plus opslag i r/BoomerangFu. Download-tal er GitHubs tæller på den nævnte fil, læst ${date}. Modsene er uofficielle og har ingen tilknytning til Cranky Watermelon.`,
     dialogVersion: (authors, version) => `${authors}. Version ${version}.`,
     dialogLineage: "Stamtræ",
     dialogBuiltOn: "Bygget oven på",
@@ -181,12 +181,12 @@ export const ui: Record<Locale, Messages> = {
       "Samme forfatter lagde først et proof of concept op og byggede derefter den anden prototype oven på det. Boomerang Fu Online er et andet projekt, med egen kode og en zip fra 7. november 2026.",
     soloFamily: "Egen kodebase",
     soloFamilySummary:
-      "8 Player Mod, Hat Loader og Speedrun Timer har hver deres repo og deler ikke kode med Chaos-familien eller med hinanden.",
+      "8 Player Mod, Team Mint, Speedrun Timer, Mod Manager og Hat Loader har hver deres repo. Speedrun Timer og Mod Manager er to plugins af samme forfatter. Ingen af dem deler kode med Chaos-familien.",
   },
   en: {
     metaTitle: "Boomerang Fu mods for Windows",
     metaDescription:
-      "A catalog of public Boomerang Fu mods for Windows: Chaos Mod, the stack fork, eight players, online play, a speedrun timer, and hats.",
+      "A catalog of public Boomerang Fu mods for Windows: Chaos Mod, the stack fork, eight players, online play, Team Mint, a speedrun timer, Mod Manager, and hats.",
     language: "Language",
     languageGroup: "Choose language",
     choiceBrowser: "Browser",
@@ -197,7 +197,7 @@ export const ui: Record<Locale, Messages> = {
     checked: (date) => `Last updated ${date}`,
     title: "Every public Boomerang Fu mod for Windows",
     intro:
-      "Twelve mods and forks you can download or read without joining a closed group. The family tree shows which one is built on which. The bottom of the page lists the game version each mod is confirmed on.",
+      "Fourteen mods and forks you can download or read without joining a closed group. The family tree shows which one is built on which. A table lists the game version each mod is confirmed on.",
     statMods: "Mods in the list",
     statZip: "With a zip",
     statSource: "Source or Discord only",
@@ -220,7 +220,7 @@ export const ui: Record<Locale, Messages> = {
       `${shown} of ${total} ${inTree ? "in the tree" : "shown"}`,
     emptyTitle: "No mods match",
     emptyBody:
-      "The search and filters miss all twelve entries. Clear them and the full list comes back.",
+      "The search and filters miss all fourteen entries. Clear them and the full list comes back.",
     reset: "Reset filters",
     readDetails: "Read details",
     sourceLink: "Source",
@@ -228,7 +228,7 @@ export const ui: Record<Locale, Messages> = {
     installFolderBefore: "If you own the game on Steam, it is usually in",
     installFolderAfter: ", next to",
     installBepinexBefore:
-      "Chaos Mod, the stack fork, and Boomerang Fu Online include BepInEx in the zip. 8 Player Mod, the online prototypes, and Speedrun Timer need you to install BepInEx 5 x64 yourself and start the game once before the plugin file goes in",
+      "Chaos Mod, the stack fork, and Boomerang Fu Online include BepInEx in the zip. 8 Player Mod, the online prototypes, Team Mint, Speedrun Timer, and Mod Manager need you to install BepInEx 5 x64 yourself and start the game once before the plugin file goes in",
     installBepinexMiddle: ". The latest stable release on the 5.x line is BepInEx",
     installBepinexAfter: (release) => release + ".",
     installOneDll:
@@ -237,7 +237,7 @@ export const ui: Record<Locale, Messages> = {
       "After 1.4.1, expect the menu to crash or the mod not to load at all. Remove the dll to get back to the unmodified game.",
     omittedTitle: "Left out of the list",
     footer: (date) =>
-      `Sources: GitHub repos and releases for Jeffjewett27/BoomerangFoo, huseinnabil1997/BoomerangFoo-ChaosMod, Shyngyskhan-333/boomerang-fu-8-player-mod, alialyami90/BoomerangFooRemix, william-spongberg/BoomerangFooMod, exp111/BoomerangFuStuff, fraustiz/boomerang-fu-online, and Vulcan5757/B-Fu-Speedrunning-Mod, plus posts on r/BoomerangFu. Download counts are GitHub's counter for the named file, read on ${date}. The mods are unofficial and are not affiliated with Cranky Watermelon.`,
+      `Sources: GitHub repos and releases for Jeffjewett27/BoomerangFoo, huseinnabil1997/BoomerangFoo-ChaosMod, Shyngyskhan-333/boomerang-fu-8-player-mod, alialyami90/BoomerangFooRemix, william-spongberg/BoomerangFooMod, exp111/BoomerangFuStuff, fraustiz/boomerang-fu-online, Vulcan5757/B-Fu-Speedrunning-Mod, Vulcan5757/B-Fu-Mod-Manager, and Nordic-maker/Boomerang-Fu-Team-Mint, plus posts on r/BoomerangFu. Download counts are GitHub's counter for the named file, read on ${date}. The mods are unofficial and are not affiliated with Cranky Watermelon.`,
     dialogVersion: (authors, version) => `${authors}. Version ${version}.`,
     dialogLineage: "Family tree",
     dialogBuiltOn: "Built on top of",
@@ -281,6 +281,6 @@ export const ui: Record<Locale, Messages> = {
       "The same author posted a proof of concept first, then built the second prototype on top of it. Boomerang Fu Online is a separate project, with its own code and a zip from 7 November 2026.",
     soloFamily: "Own codebase",
     soloFamilySummary:
-      "8 Player Mod, Hat Loader, and Speedrun Timer each have their own repo and do not share code with the Chaos family or with each other.",
+      "8 Player Mod, Team Mint, Speedrun Timer, Mod Manager, and Hat Loader each have their own repo. Speedrun Timer and Mod Manager are two plugins by the same author. None of them share code with the Chaos family.",
   },
 };

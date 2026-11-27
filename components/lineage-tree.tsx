@@ -61,7 +61,7 @@ export function LineageTree({
       id: "solo",
       title: m.soloFamily,
       summary: m.soloFamilySummary,
-      rootIds: ["eight", "hats", "speedrun"],
+      rootIds: ["eight", "team-mint", "speedrun", "manager", "hats"],
     },
   ];
 
