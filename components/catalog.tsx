@@ -4,6 +4,7 @@ import { useMemo, useState, type ReactNode } from "react";
 import { Search, ExternalLink } from "lucide-react";
 
 import { FeatureTable, GameVersionTable } from "@/components/feature-table";
+import type { LiveVersions } from "@/lib/live-versions";
 import { LanguageSwitch } from "@/components/language-switch";
 import { LineageTree } from "@/components/lineage-tree";
 import { statusLabel, statusTone } from "@/components/status-tone";
@@ -48,7 +49,7 @@ function emphasize(text: string, token: string) {
   );
 }
 
-export function Catalog() {
+export function Catalog({ liveVersions }: { liveVersions: LiveVersions }) {
   const { locale } = useLocale();
   const m = useUi();
   const [query, setQuery] = useState("");
@@ -322,7 +323,7 @@ export function Catalog() {
 
         <FeatureTable onOpen={setOpenId} />
 
-        <GameVersionTable onOpen={setOpenId} />
+        <GameVersionTable onOpen={setOpenId} live={liveVersions} />
 
         <section className="mt-12 grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
           <div className="rounded-2xl border bg-card p-5 sm:p-6">
